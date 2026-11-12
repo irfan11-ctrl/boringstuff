@@ -1,0 +1,2547 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="Alat praktis gratis untuk membagi tagihan, membandingkan daftar, menghitung harga jual, merapikan file Excel, membuat QR, mengubah foto ke PDF, dan mengolah teks dengan AI.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="application-name" content="BoringStuff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BoringStuff">
+  <meta property="og:title" content="BoringStuff — Alat Kecil untuk Tugas Sehari-hari">
+  <meta property="og:description" content="Alat praktis gratis untuk membagi tagihan, membandingkan daftar, menghitung harga jual, merapikan file Excel, membuat QR, mengubah foto ke PDF, dan mengolah teks dengan AI.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BoringStuff — Alat Kecil untuk Tugas Sehari-hari">
+  <meta name="twitter:description" content="Alat praktis gratis untuk membagi tagihan, membandingkan daftar, menghitung harga jual, merapikan file Excel, membuat QR, mengubah foto ke PDF, dan mengolah teks dengan AI.">
+  <title>BoringStuff — Alat Kecil untuk Tugas Sehari-hari</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%230b0d12%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-size=%2738%27 font-family=%27sans-serif%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%23f5e6c8%27%3Eb.%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BoringStuff",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any modern web browser",
+    "description": "Alat praktis gratis untuk membagi tagihan, membandingkan daftar, menghitung harga jual, merapikan file Excel, membuat QR, mengubah foto ke PDF, dan mengolah teks dengan AI.",
+    "inLanguage": ["en", "id"],
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #0b0d12;
+      --surface: #11141c;
+      --surface-raised: #171b25;
+      --border: #262b38;
+      --muted: #8d95a7;
+      --text: #f2f4f8;
+      --accent: #c6a96b;
+      --accent-bright: #ead7a5;
+      --green: #9bc9b2;
+      --champagne: #e8d5a5;
+      --gold-soft: rgba(198,169,107,.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 82% 0%, rgba(198, 169, 107, .10), transparent 34rem),
+        radial-gradient(ellipse at 5% 35%, rgba(89, 105, 127, .08), transparent 30rem),
+        var(--page);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: .95rem;
+    }
+
+    h1, h2, h3, .brand-name { font-family: "Space Grotesk", sans-serif; }
+    .navbar {
+      min-height: 76px;
+      background: rgba(11, 13, 18, .86);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(18px);
+    }
+    .navbar-inner { max-width: 1240px; }
+    .brand-mark {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(145deg, #e8d5a5, #a9874f);
+      color: #17140e;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 22px rgba(198, 169, 107, .22);
+    }
+    .brand-name { font-size: 1.08rem; font-weight: 700; letter-spacing: -.04em; }
+    .nav-link {
+      color: #a7adbb;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    .nav-link:hover, .nav-link:focus { color: #fff; }
+    .nav-divider { height: 26px; border-left: 1px solid var(--border); }
+    .currency-select:focus, .form-control:focus, .form-select:focus {
+      border-color: #c6a96b;
+      box-shadow: 0 0 0 .2rem rgba(198,169,107,.15);
+    }
+
+    main { max-width: 1240px; }
+    .eyebrow {
+      color: var(--accent-bright);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      max-width: 640px;
+      font-size: clamp(2.2rem, 5vw, 3.45rem);
+      font-weight: 600;
+      letter-spacing: -.065em;
+      line-height: 1.08;
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, #f0dfb5, #c6a96b 55%, #c9d5ce);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-copy { max-width: 590px; color: var(--muted); line-height: 1.75; }
+    .status-note { color: #a5afc0; font-size: .82rem; }
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: .4rem;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(110,231,183,.55);
+    }
+    .section-label {
+      color: #e7e9ef;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -.025em;
+    }
+    .tool-card {
+      position: relative;
+      display: flex;
+      min-height: 192px;
+      flex-direction: column;
+      padding: 1.25rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(23,27,37,.96), rgba(17,20,28,.96));
+      color: var(--text);
+      text-align: left;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    .tool-card:hover { transform: translateY(-2px); border-color: #45405c; }
+    .tool-card.active {
+      border-color: rgba(198,169,107,.72);
+      background: linear-gradient(145deg, rgba(55,46,31,.58), rgba(20,22,32,.98));
+      box-shadow: inset 0 0 0 1px rgba(198,169,107,.12), 0 14px 38px rgba(0,0,0,.2);
+    }
+    .tool-card:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+    .tool-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid rgba(198,169,107,.22);
+      border-radius: 12px;
+      background: rgba(198,169,107,.10);
+      color: var(--accent-bright);
+      font-size: 1.15rem;
+    }
+    .tool-card:nth-child(2) .tool-icon {
+      border-color: rgba(198,169,107,.18);
+      background: rgba(198,169,107,.07);
+      color: #d9c18e;
+    }
+    .tool-card:nth-child(3) .tool-icon {
+      border-color: rgba(198,169,107,.18);
+      background: rgba(198,169,107,.07);
+      color: #d9c18e;
+    }
+    .tool-card h3 { margin: 1.1rem 0 .35rem; font-size: 1rem; font-weight: 600; letter-spacing: -.025em; }
+    .tool-card p { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.55; }
+    .tool-arrow { position: absolute; top: 1.4rem; right: 1.35rem; color: #777f91; }
+
+    .workspace {
+      min-height: 350px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(19,22,31,.98), rgba(15,18,25,.98));
+      box-shadow: 0 22px 65px rgba(0,0,0,.15);
+    }
+    .workspace-heading { font-size: 1.3rem; font-weight: 600; letter-spacing: -.04em; }
+    .workspace-subtitle { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+    .document-preview {
+      max-width: 760px;
+      width: 100%;
+      min-height: 420px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 5vw, 3.5rem);
+      border-radius: 8px;
+      background: #fff;
+      color: #1d2430;
+      box-shadow: 0 12px 36px rgba(0,0,0,.2);
+      font: 1rem/1.8 Georgia, "Times New Roman", serif;
+      overflow-wrap: anywhere;
+      resize: vertical;
+    }
+    .job-match-panel {
+      max-width: 760px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-raised);
+      color: var(--text);
+      font-size: .9rem;
+    }
+    .job-match-panel ul { margin-bottom: .5rem; }
+    @media (max-width: 575.98px) {
+      .document-preview { min-height: 360px; }
+    }
+    .library-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-raised);
+    }
+    .library-content {
+      max-height: 9rem;
+      overflow: hidden;
+      color: #c3c8d3;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .caption-count { color: var(--muted); font-size: .78rem; }
+    .caption-count.over-limit { color: #fca5a5; }
+    .form-label { color: #d9dce5; font-size: .85rem; font-weight: 600; }
+    .form-control, .form-select {
+      border-color: #303645;
+      background-color: #0d1017;
+      color: #f2f4f8;
+      font-size: .9rem;
+    }
+    .document-preview.form-control {
+      background: #fff;
+      color: #1d2430;
+      font: 1rem/1.8 Georgia, "Times New Roman", serif;
+    }
+    .form-control::placeholder { color: #70788a; }
+    textarea.form-control { min-height: 120px; resize: vertical; }
+    .form-text { color: #858da0; font-size: .78rem; }
+    .btn-primary {
+      border-color: #b6975d;
+      background: linear-gradient(135deg, #d8bd82, #ad8a50);
+      color: #17140e;
+      font-weight: 700;
+      box-shadow: 0 7px 20px rgba(173,138,80,.14);
+    }
+    .btn-primary:hover, .btn-primary:focus { border-color: #ead7a5; background: linear-gradient(135deg, #ead7a5, #c6a96b); color: #17140e; }
+    .btn-outline-secondary { border-color: #383e4c; color: #c3c8d3; }
+    .btn-outline-secondary:hover { border-color: #555d6e; background: #202532; color: white; }
+    .upload-zone {
+      display: flex;
+      min-height: 150px;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      border: 1px dashed #414859;
+      border-radius: 14px;
+      background: rgba(11,13,18,.45);
+      color: #c7cbd6;
+      text-align: center;
+      cursor: pointer;
+    }
+    .upload-zone:hover { border-color: #c6a96b; background: rgba(198,169,107,.04); }
+    .upload-zone.is-dragover { border-color: #ead7a5; background: rgba(198,169,107,.1); }
+    .upload-zone:focus-within { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+    .upload-zone .bi { color: var(--accent-bright); font-size: 1.5rem; }
+    .pdf-progress {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(11,13,18,.45);
+    }
+    .pdf-progress .progress { height: 8px; background-color: #292e3a; }
+    .pdf-progress .progress-bar { background-color: var(--accent); transition: width .1s linear; }
+    .feature-panel { display: none; }
+    .feature-panel.active { display: block; }
+    .toast-container { z-index: 1090; }
+    .generation-badge { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .72rem; border: 1px solid rgba(198,169,107,.38); border-radius: 999px; background: rgba(198,169,107,.09); color: #ead7a5; font-size: .76rem; font-weight: 650; letter-spacing: .02em; }
+    .generation-badge.is-local { border-color: rgba(148,163,184,.32); background: rgba(148,163,184,.08); color: #cbd5e1; }
+    .toast {
+      border: 1px solid var(--border);
+      background: #1a1e29;
+      color: var(--text);
+    }
+    footer { border-top: 1px solid rgba(255,255,255,.06); color: #858b98; font-size: .8rem; }
+
+    /* Quiet luxury loading experience: fully local CSS, no image or animation API. */
+    .luxury-loader {
+      position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center;
+      padding: 1.5rem; background: rgba(7, 8, 11, .88);
+      -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .28s ease, visibility .28s ease;
+    }
+    .luxury-loader.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
+    .loader-card { width: min(100%, 340px); padding: 2.4rem 2rem 2.1rem; text-align: center;
+      border: 1px solid rgba(232,213,165,.19); border-radius: 22px;
+      background: linear-gradient(145deg, rgba(28,27,25,.96), rgba(13,15,20,.97));
+      box-shadow: 0 30px 100px rgba(0,0,0,.48), inset 0 1px rgba(255,255,255,.045); }
+    .loader-emblem { position: relative; width: 86px; height: 86px; margin: 0 auto 1.5rem; display: grid; place-items: center; }
+    .loader-ring { position: absolute; inset: 3px; border: 1px solid rgba(232,213,165,.24); border-radius: 50%; }
+    .loader-ring::before { content: ""; position: absolute; width: 7px; height: 7px; top: 8px; left: 12px;
+      border-radius: 50%; background: #f0dfb5; box-shadow: 0 0 14px rgba(232,213,165,.8); }
+    .loader-ring-one { animation: loader-orbit 3.2s linear infinite; }
+    .loader-ring-two { inset: 12px; border-style: dashed; border-color: rgba(232,213,165,.2); animation: loader-orbit 5s linear infinite reverse; }
+    .loader-core { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 15px;
+      color: #17140e; font: 700 1.35rem/1 "Space Grotesk", sans-serif;
+      background: linear-gradient(145deg, #f0dfb5, #ad8a50); box-shadow: 0 0 34px rgba(198,169,107,.2); }
+    .loader-kicker { margin-bottom: .45rem; color: var(--accent-bright); font-size: .65rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
+    .loader-title { margin: 0; color: #f4f0e7; font: 500 1.15rem/1.4 "Space Grotesk", sans-serif; letter-spacing: -.035em; }
+    .loader-copy { margin: .5rem 0 1.35rem; color: #9699a1; font-size: .82rem; }
+    .loader-track { height: 2px; overflow: hidden; border-radius: 9px; background: rgba(232,213,165,.12); }
+    .loader-track span { display: block; width: 38%; height: 100%; border-radius: inherit;
+      background: linear-gradient(90deg, transparent, #ead7a5, #fff4d5, transparent); animation: loader-sweep 1.35s ease-in-out infinite; }
+    @keyframes loader-orbit { to { transform: rotate(360deg); } }
+    @keyframes loader-sweep { from { transform: translateX(-120%); } to { transform: translateX(360%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .luxury-loader, .loader-ring-one, .loader-ring-two, .loader-track span { animation: none !important; transition: none; }
+      .loader-track span { width: 100%; opacity: .65; }
+    }
+
+    /* Responsive polish: comfortable touch targets, compact mobile navigation,
+       and predictable layouts on narrow screens. */
+    html { scroll-padding-top: 88px; }
+    #tools, #workspace, #savedLibrary { scroll-margin-top: 88px; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    .btn:focus-visible, .nav-link:focus-visible, .navbar-toggler:focus-visible,
+    .form-control:focus-visible, .form-select:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 2px;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .tool-card { min-height: 184px; padding: 1.1rem; }
+      .workspace { padding: 1.5rem !important; }
+    }
+
+    @media (max-width: 767.98px) {
+      html { scroll-padding-top: 72px; }
+      #tools, #workspace, #savedLibrary { scroll-margin-top: 72px; }
+      .navbar { min-height: 64px; padding-top: .55rem; padding-bottom: .55rem; }
+      .navbar-inner { gap: .65rem; }
+      .navbar-brand { min-width: 0; margin-right: .25rem !important; }
+      .brand-name { font-size: 1rem; white-space: nowrap; }
+      .brand-mark { flex: 0 0 35px; }
+      .navbar-toggler { flex: 0 0 auto; min-width: 44px; min-height: 44px; }
+      .navbar-collapse { padding-top: .65rem; }
+      .navbar-nav { gap: .15rem !important; }
+      .nav-link { padding: .65rem .25rem; }
+      .header-tools { width: 100%; justify-content: space-between; flex-wrap: wrap; gap: .6rem !important; margin-top: .7rem !important; }
+      .header-tools .form-text { flex: 1 0 100%; margin: 0 !important; }
+      .header-tools .btn { flex: 1 1 auto; min-height: 42px; }
+      .nav-divider { display: none; }
+      main.container-fluid { padding-top: 2.25rem !important; }
+      .hero-title { font-size: clamp(2.15rem, 9.5vw, 3.2rem); line-height: 1.06; }
+      .hero-copy { font-size: .94rem; line-height: 1.7; }
+      .status-note { line-height: 1.6; }
+      #tools > .d-flex { align-items: flex-end !important; }
+      .tool-card {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) 16px;
+        grid-template-rows: auto auto;
+        column-gap: .85rem;
+        row-gap: .2rem;
+        align-items: center;
+        min-height: 104px;
+        padding: .95rem 1rem;
+        border-radius: 14px;
+      }
+      .tool-card .tool-icon { grid-column: 1; grid-row: 1 / span 2; width: 42px; height: 42px; }
+      .tool-card h3 { grid-column: 2; grid-row: 1; margin: 0; padding-right: .35rem; font-size: .98rem; }
+      .tool-card p { grid-column: 2 / 4; grid-row: 2; padding-right: .5rem; font-size: .8rem; line-height: 1.45; }
+      .tool-arrow { top: 1rem; right: 1rem; font-size: .85rem; }
+      .workspace { min-height: 0; padding: 1rem !important; border-radius: 15px; }
+      .workspace-heading { font-size: 1.2rem; }
+      .workspace-subtitle { font-size: .85rem; }
+      .feature-panel .row.g-4 { --bs-gutter-y: 1.35rem; }
+      .form-control, .form-select { min-height: 46px; font-size: 16px; }
+      textarea.form-control { min-height: 132px; }
+      .document-preview.form-control { min-height: 340px; padding: 1.1rem; font-size: 15px; line-height: 1.7; }
+      .btn { min-height: 42px; }
+      #generateDocumentButton, #socialForm button[type="submit"], #optimizePdfButton { min-height: 46px; }
+      .upload-zone { min-height: 136px; padding: 1.15rem; }
+      .job-match-panel { padding: .9rem; font-size: .84rem; }
+      .library-card { padding: 1rem !important; }
+      .library-card .btn { flex: 1 1 auto; }
+      .library-content { max-height: 8rem; }
+      .document-output > .border { padding: 1rem !important; }
+      .document-output .d-flex { min-width: 0; }
+      .caption-count { font-size: .75rem; }
+      footer .container-fluid { justify-content: center !important; text-align: center; }
+      .toast-container { right: 0; left: 0; bottom: 0; width: 100%; padding: .75rem !important; }
+      .toast { width: 100%; }
+      .luxury-loader { padding: 1rem; }
+      .loader-card { width: min(100%, 320px); padding: 2rem 1.35rem 1.7rem; }
+    }
+
+    @media (max-width: 390px) {
+      .brand-name { font-size: .92rem; }
+      .brand-mark { width: 32px; height: 32px; flex-basis: 32px; }
+      .hero-title { font-size: clamp(2rem, 9vw, 2.45rem); }
+      .tool-card { grid-template-columns: 40px minmax(0, 1fr) 14px; column-gap: .7rem; }
+      .tool-card .tool-icon { width: 38px; height: 38px; }
+      .tool-card h3 { font-size: .92rem; }
+      .tool-card p { font-size: .76rem; }
+      .header-tools .btn { font-size: .78rem; padding-inline: .55rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+      .tool-card, .btn, .form-control, .form-select { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md sticky-top">
+    <div class="container-fluid navbar-inner px-3 px-lg-4">
+      <a class="navbar-brand d-flex align-items-center gap-2 me-4" href="#" aria-label="Beranda BoringStuff">
+        <span class="brand-mark"><i class="bi bi-stars" aria-hidden="true"></i></span>
+        <span class="brand-name text-white">boringstuff<span class="text-secondary">.com</span></span>
+      </a>
+      <button class="navbar-toggler border-secondary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Buka atau tutup navigasi">
+        <i class="bi bi-list text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav me-auto gap-md-2">
+          <li class="nav-item"><a class="nav-link" href="#tools">Alat</a></li>
+          <li class="nav-item"><a class="nav-link" href="#workspace">Cara kerja</a></li>
+          <li class="nav-item"><a class="nav-link" href="#savedLibrary">Perpustakaan saya</a></li>
+        </ul>
+        <div class="header-tools d-flex align-items-center gap-2 mt-3 mt-md-0">
+          <span class="form-text me-1">Menikmati BoringStuff?</span>
+          <a class="btn btn-outline-secondary btn-sm" href="https://trakteer.id/therealmen" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-heart-fill me-1" aria-hidden="true"></i>Trakteer
+          </a>
+          <a class="btn btn-primary btn-sm" href="https://buymeacoffee.com/vantagesola" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-cup-hot-fill me-1" aria-hidden="true"></i>Traktir kopi
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-fluid px-3 px-lg-4 pt-5 pb-5">
+    <section class="pt-lg-4 pb-5" aria-labelledby="pageTitle">
+      <div class="eyebrow mb-3">Lebih sedikit pekerjaan repetitif</div>
+      <h1 class="hero-title mb-3" id="pageTitle">Urusan kecil selesai.<br><span>Waktu lebih untuk berkarya.</span></h1>
+      <p class="hero-copy mb-4">Alat sederhana untuk pekerjaan sehari-hari yang repetitif. Bagi tagihan, bandingkan daftar, hitung harga jual, rapikan teks, dan ubah foto jadi PDF.</p>
+      <div class="status-note"><span class="status-dot" aria-hidden="true"></span>Alat praktis yang berjalan di perangkat, dengan bantuan Gemini AI opsional</div>
+    </section>
+
+    <section id="tools" class="mb-4" aria-labelledby="toolsHeading">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="section-label mb-0" id="toolsHeading">Pilih alat</h2>
+        <span class="text-secondary small d-none d-sm-inline">Alat kecil. Tugas sederhana. Selesai dalam hitungan detik.</span>
+      </div>
+      <div class="row g-3" role="tablist" aria-label="Daftar alat produktivitas" aria-orientation="horizontal">
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card active w-100" type="button" id="tab-document" role="tab" aria-selected="true" aria-controls="panel-document" data-feature="document" tabindex="0">
+            <span class="tool-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Pembuat Dokumen</h3>
+            <p>Buat dokumen profesional dari beberapa informasi sederhana.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-career" role="tab" aria-selected="false" aria-controls="panel-career" data-feature="career" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Asisten Karier AI</h3>
+            <p>Tinjau CV dan persiapkan diri untuk wawancara kerja.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-split" role="tab" aria-selected="false" aria-controls="panel-split" data-feature="split" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-receipt" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Patungan &amp; Pajak</h3>
+            <p>Bagi tagihan, pajak, dan biaya layanan per orang. Siap dibagikan ke grup.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-diff" role="tab" aria-selected="false" aria-controls="panel-diff" data-feature="diff" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-intersect" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Pembanding Daftar</h3>
+            <p>Cari data yang hilang, berbeda, atau ganda di dua daftar.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-margin" role="tab" aria-selected="false" aria-controls="panel-margin" data-feature="margin" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-calculator" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Harga Jual &amp; Untung</h3>
+            <p>Hitung harga jual ideal setelah potongan marketplace.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-table" role="tab" aria-selected="false" aria-controls="panel-table" data-feature="table" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Teks ke Tabel</h3>
+            <p>Ubah chat atau catatan menjadi tabel yang siap dibuka di Excel.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-photopdf" role="tab" aria-selected="false" aria-controls="panel-photopdf" data-feature="photopdf" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Foto ke PDF</h3>
+            <p>Gabung foto KTP, nota, atau ijazah jadi satu PDF.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-cleaner" role="tab" aria-selected="false" aria-controls="panel-cleaner" data-feature="cleaner" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-file-earmark-spreadsheet" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Perapih File Excel</h3>
+            <p>Rapikan nomor HP, nama, tanggal, dan hapus baris ganda.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-qr" role="tab" aria-selected="false" aria-controls="panel-qr" data-feature="qr" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-qr-code" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>QR Code Instan</h3>
+            <p>Ubah tautan, WhatsApp, atau Wi-Fi menjadi QR yang siap diunduh.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-images" role="tab" aria-selected="false" aria-controls="panel-images" data-feature="images" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-images" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Ubah Ukuran &amp; Format Gambar</h3>
+            <p>Ubah ukuran dan format banyak foto sekaligus.</p>
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <button class="tool-card w-100" type="button" id="tab-everyday" role="tab" aria-selected="false" aria-controls="panel-everyday" data-feature="everyday" tabindex="-1">
+            <span class="tool-icon"><i class="bi bi-magic" aria-hidden="true"></i></span>
+            <i class="bi bi-arrow-up-right tool-arrow" aria-hidden="true"></i>
+            <h3>Peralatan Teks</h3>
+            <p>Bersihkan, hitung, ubah, dan format teks dengan cepat.</p>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace p-3 p-md-4 p-lg-5" id="workspace" aria-live="polite">
+      <div class="feature-panel active" id="panel-document" role="tabpanel" aria-labelledby="tab-document" data-panel="document">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <div class="eyebrow mb-2">01 / Pembuat dokumen</div>
+            <h2 class="workspace-heading mb-2">Buat surat profesional.</h2>
+            <p class="workspace-subtitle mb-0">Buat draf profesional dalam bahasa Inggris atau Indonesia berdasarkan informasi yang kamu berikan, tanpa mengarang pengalaman.</p>
+            <div class="alert alert-secondary small mt-3 mb-0" role="note">Saat Gemini digunakan, informasi yang kamu kirim akan diproses oleh Google. Pada paket gratis, Google dapat menggunakan konten yang dikirim untuk meningkatkan produknya. Hapus data pribadi yang sensitif dan periksa setiap klaim hasil AI.</div>
+          </div>
+          <div class="col-lg-7">
+            <form id="documentForm" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label" for="documentType">Jenis dokumen</label>
+                  <select class="form-select" id="documentType" required>
+                    <option value="resignation">Surat pengunduran diri</option>
+                    <option value="cover">Surat lamaran kerja</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="documentTone">Gaya bahasa</label>
+                  <select class="form-select" id="documentTone">
+                    <option value="professional" selected>Profesional</option>
+                    <option value="formal">Formal</option>
+                    <option value="friendly">Ramah</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="documentLanguage">Bahasa hasil</label>
+                  <select class="form-select" id="documentLanguage">
+                    <option value="en" selected>Bahasa Inggris</option>
+                    <option value="id">Bahasa Indonesia</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="fullName">Nama lengkap</label>
+                  <input class="form-control" id="fullName" name="fullName" autocomplete="name" maxlength="200" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="jobTitle">Posisi yang dilamar</label>
+                  <input class="form-control" id="jobTitle" name="jobTitle" maxlength="200" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="companyName">Nama perusahaan</label>
+                  <input class="form-control" id="companyName" name="companyName" maxlength="200" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="recipientName">Nama penerima <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="recipientName" name="recipientName" autocomplete="off" maxlength="200" placeholder="Manajer perekrutan atau atasan">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="contactEmail">Email kamu <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="contactEmail" name="contactEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="contactPhone">Nomor telepon <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="contactPhone" name="contactPhone" type="tel" autocomplete="tel" maxlength="50" placeholder="+1 555 0100">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="documentDate">Tanggal</label>
+                  <input class="form-control" id="documentDate" name="date" type="date" required>
+                </div>
+                <div class="col-12" id="coverDetailsField" hidden>
+                  <label class="form-label" for="coverDetails">Pengalaman paling relevan <span class="text-secondary fw-normal">(opsional jika mengisi detail CV)</span></label>
+                  <textarea class="form-control" id="coverDetails" name="coverDetails" maxlength="5000" placeholder="Tuliskan 1–2 kalimat ringkas tentang pencapaian, keterampilan, atau hasil yang benar-benar kamu miliki. Hanya informasi darimu yang akan digunakan."></textarea>
+                </div>
+                <div class="col-12" id="jobDescriptionField" hidden>
+                  <label class="form-label" for="jobDescription">Deskripsi pekerjaan <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <textarea class="form-control" id="jobDescription" maxlength="5000" rows="4" placeholder="Tempel persyaratan pekerjaan untuk melihat keterampilan yang cocok dengan pengalaman yang kamu masukkan."></textarea>
+                  <div class="form-text">Pencocokan dilakukan secara lokal berdasarkan kata kunci yang dikenali. Fitur ini tidak menilai kualifikasi atau menyimpulkan pengalaman yang tidak kamu cantumkan.</div>
+                </div>
+                <div class="col-12" id="resumeTextField" hidden>
+                  <label class="form-label" for="resumeText">Cuplikan CV yang relevan <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <textarea class="form-control" id="resumeText" maxlength="5000" rows="4" placeholder="Tempel bagian CV yang relevan saja. Kamu juga bisa menulis ringkasan singkat; tidak perlu mengunggah file."></textarea>
+                  <div class="form-text">Teks diproses di perangkat ini. Data hanya disimpan jika kamu memilih Simpan ke Perpustakaan.</div>
+                </div>
+                <div class="col-sm-6" id="resignationScenarioField" hidden>
+                  <label class="form-label" for="resignationScenario">Situasi pengunduran diri</label>
+                  <select class="form-select" id="resignationScenario">
+                    <option value="standard">Pengunduran diri biasa</option>
+                    <option value="personal">Alasan pribadi</option>
+                    <option value="career_change">Perubahan karier</option>
+                    <option value="immediate_request">Permohonan pengunduran diri segera</option>
+                  </select>
+                </div>
+                <div class="col-12" id="resignationReasonField">
+                  <label class="form-label" for="resignationReason">Informasi tambahan <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <textarea class="form-control" id="resignationReason" name="reason" maxlength="1000" placeholder="Boleh dikosongkan; draf tidak mewajibkan penjelasan alasan."></textarea>
+                </div>
+                <div class="col-sm-6" id="lastWorkingDayField">
+                  <label class="form-label" for="lastWorkingDay">Hari kerja terakhir <span class="text-secondary fw-normal" id="lastWorkingDayOptional">(opsional)</span></label>
+                  <input class="form-control" id="lastWorkingDay" name="lastWorkingDay" type="date">
+                  <div class="form-text" id="lastWorkingDayHelp">Opsional. Sistem tidak mengasumsikan masa pemberitahuan atau aturan hukum tertentu.</div>
+                </div>
+                <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+                  <button class="btn btn-primary px-4 py-2" id="generateDocumentButton" type="submit">
+                    <i class="bi bi-magic me-2" aria-hidden="true"></i>Buat dokumen
+                  </button>
+                  <span class="form-text" id="docGenerationMode">Mode draf lokal. Tambahkan kunci Gemini untuk mengaktifkan penulisan AI; selalu periksa nama, tanggal, dan klaim.</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-12 document-output" id="documentOutput" hidden>
+            <div class="border border-secondary rounded-3 p-3 p-md-4">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+                <div class="d-flex flex-column gap-2">
+                  <h3 class="section-label mb-0">Surat kamu</h3>
+                  <span class="generation-badge" id="documentGenerationBadge" role="status" aria-live="polite">Menunggu status pembuatan</span>
+                </div>
+              <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" type="button" id="copyDocumentButton">
+                    <i class="bi bi-clipboard me-1" aria-hidden="true"></i>Salin
+                  </button>
+                  <button class="btn btn-primary btn-sm" type="button" id="downloadDocumentButton">
+                    <i class="bi bi-download me-1" aria-hidden="true"></i>Unduh PDF
+                  </button>
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="downloadDocxButton">
+                  <i class="bi bi-file-earmark-word me-1" aria-hidden="true"></i>Unduh Word
+                </button>
+              </div>
+              </div>
+              <p class="form-text mb-3">Sunting draf di bawah sebelum menyalin, menyimpan, atau mengunduhnya.</p>
+              <textarea class="document-preview mb-0" id="generatedDocument" aria-label="Surat hasil pembuatan yang dapat disunting" maxlength="20000" rows="16"></textarea>
+              <div id="jobMatchAnalysis" class="job-match-panel mt-3" aria-live="polite" hidden></div>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="saveDocumentButton">
+                  <i class="bi bi-bookmark-plus me-1" aria-hidden="true"></i>Simpan ke Perpustakaan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-social" role="tabpanel" aria-labelledby="tab-social" data-legacy-panel="social" hidden aria-hidden="true">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <div class="eyebrow mb-2">02 / Social media</div>
+            <h2 class="workspace-heading mb-2">Say it like you mean it.</h2>
+            <p class="workspace-subtitle mb-0">Create platform-aware captions with distinct creative angles, tailored CTAs, and topic-specific hashtags in English or Bahasa Indonesia.</p>
+            <div class="alert alert-secondary small mt-3 mb-0" role="note">When Gemini is enabled, your post brief and brand details are sent to Google for processing. On the free tier, Google may use submitted content to improve its products. Do not include confidential campaign information.</div>
+          </div>
+          <div class="col-lg-7">
+            <form id="socialForm">
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialCategory">Kategori</label>
+                  <select class="form-select" id="socialCategory" required>
+                    <option value="food">Makanan &amp; Minuman</option>
+                    <option value="fashion">Mode &amp; Pakaian</option>
+                    <option value="tech">Teknologi &amp; Gadget</option>
+                    <option value="services">Jasa</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialPlatform">Platform</label>
+                  <select class="form-select" id="socialPlatform" required>
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="x">X</option>
+                    <option value="youtube">YouTube</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialLanguage">Bahasa hasil</label>
+                  <select class="form-select" id="socialLanguage">
+                    <option value="en" selected>Bahasa Inggris</option>
+                    <option value="id">Bahasa Indonesia</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialTone">Gaya komunikasi</label>
+                  <select class="form-select" id="socialTone" required>
+                    <option value="professional">Profesional</option>
+                    <option value="casual">Santai</option>
+                    <option value="friendly">Ramah</option>
+                    <option value="persuasive">Persuasif</option>
+                    <option value="educational">Edukatif</option>
+                    <option value="humorous">Humoris</option>
+                    <option value="minimal">Minimal</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialObjective">Tujuan konten</label>
+                  <select class="form-select" id="socialObjective">
+                    <option value="promotion">Promosi</option>
+                    <option value="engagement">Interaksi</option>
+                    <option value="education">Edukasi</option>
+                    <option value="brand_awareness">Pengenalan merek</option>
+                    <option value="storytelling">Bercerita</option>
+                    <option value="sales_conversion">Konversi penjualan</option>
+                    <option value="personal_branding">Citra pribadi</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="hashtagCount">Tagar</label>
+                  <select class="form-select" id="hashtagCount" required>
+                    <option value="0">Tanpa tagar</option>
+                    <option value="3">3 hashtags</option>
+                    <option value="5" selected>5 hashtags</option>
+                    <option value="10">10 hashtags</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="postDetails">Apa topik konten ini?</label>
+                  <textarea class="form-control" id="postDetails" rows="3" maxlength="1000" required placeholder="Jelaskan produk, penawaran, atau ide. Cantumkan hanya klaim yang benar dan aman dipublikasikan."></textarea>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="targetAudience">Audiens <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="targetAudience" maxlength="300" placeholder="Contoh: pengusaha pemula">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialKeyBenefit">Manfaat utama <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="socialKeyBenefit" maxlength="300" placeholder="Contoh: siap dalam 5 menit">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="socialCallToAction">Ajakan bertindak <span class="text-secondary fw-normal">(opsional)</span></label>
+                  <input class="form-control" id="socialCallToAction" maxlength="300" placeholder="Contoh: kunjungi toko kami">
+                </div>
+              </div>
+              <p class="form-text mb-3">Tulis audiens, manfaat, dan ajakan bertindak dalam bahasa hasil yang dipilih. Draf menggunakan detail yang kamu masukkan tanpa menerjemahkan atau memverifikasi klaim.</p>
+              <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                <button class="btn btn-primary px-4 py-2" type="submit"><i class="bi bi-stars me-2" aria-hidden="true"></i>Buat konten</button>
+                <span class="form-text" id="captionGenerationMode">Mode caption lokal. Tambahkan kunci Gemini untuk mengaktifkan penulisan AI.</span>
+              </div>
+              <div id="socialOutput" hidden>
+                <p class="form-text mb-3">Pilih salah satu draf, lalu sunting sebelum menyalin atau menyimpan. Draf X dibatasi 280 karakter; LinkedIn dan X menggunakan maksimal 3 tagar.</p>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label" for="socialCaptionOutput">Draf 1</label>
+                    <textarea class="form-control mb-1" id="socialCaptionOutput" rows="7" maxlength="5000" aria-describedby="captionCount"></textarea>
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                      <div id="captionCount" class="caption-count me-auto" aria-live="polite"></div>
+                      <button class="btn btn-outline-secondary" type="button" id="copySocialCaptionButton">
+                        <i class="bi bi-clipboard me-2" aria-hidden="true"></i>Salin draft 1
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="captionAlternative2">Draf 2</label>
+                    <textarea class="form-control mb-2" id="captionAlternative2" rows="6" maxlength="5000"></textarea>
+                    <button class="btn btn-outline-secondary" type="button" id="copyCaptionAlternative2">
+                      <i class="bi bi-clipboard me-2" aria-hidden="true"></i>Salin draft 2
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="captionAlternative3">Draf 3</label>
+                    <textarea class="form-control mb-2" id="captionAlternative3" rows="6" maxlength="5000"></textarea>
+                    <button class="btn btn-outline-secondary" type="button" id="copyCaptionAlternative3">
+                      <i class="bi bi-clipboard me-2" aria-hidden="true"></i>Salin draft 3
+                    </button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <span class="form-label d-block">Saran ajakan bertindak</span>
+                  <div class="d-flex flex-wrap gap-2" id="ctaSuggestions" aria-live="polite"></div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+                  <button class="btn btn-outline-secondary" type="button" id="saveCaptionButton">
+                    <i class="bi bi-bookmark-plus me-2" aria-hidden="true"></i>Simpan ke Perpustakaan
+                  </button>
+                  <span class="form-text">Draf 1 akan disimpan ke Perpustakaan.</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-career" role="tabpanel" aria-labelledby="tab-career" data-panel="career" hidden>
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <div class="eyebrow mb-2">03 / Asisten Karier AI</div>
+            <h2 class="workspace-heading mb-2">Persiapkan diri dengan lebih matang.</h2>
+            <p class="workspace-subtitle">Tinjau CV berdasarkan lowongan tertentu, lalu persiapkan wawancara dengan pertanyaan dan kerangka jawaban yang relevan dengan posisi.</p>
+            <div class="alert alert-secondary small mt-3 mb-0" role="note">Privasi: teks yang kamu kirim ke fitur ini diproses oleh Google Gemini. Pada paket gratis, konten dapat digunakan Google untuk meningkatkan produknya. Jangan sertakan data pribadi sensitif. Analisis ini tidak disimpan otomatis oleh aplikasi.</div>
+          </div>
+          <div class="col-lg-7">
+            <div class="border border-secondary rounded-3 p-3 p-md-4 mb-4">
+              <h3 class="h5 mb-3">Analisis Kecocokan CV &amp; Lowongan</h3>
+              <form id="resumeReviewForm">
+                <div class="mb-3">
+                  <label class="form-label" for="resumeReviewText">Teks CV</label>
+                  <textarea class="form-control" id="resumeReviewText" rows="7" maxlength="12000" required placeholder="Tempel teks CV. Hapus alamat, nomor telepon, dan informasi sensitif lainnya terlebih dahulu."></textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="resumeReviewJob">Deskripsi lowongan tujuan</label>
+                  <textarea class="form-control" id="resumeReviewJob" rows="6" maxlength="12000" required placeholder="Tempel deskripsi dan persyaratan lowongan."></textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="careerLanguage">Bahasa analisis</label>
+                  <select class="form-select" id="careerLanguage"><option value="en">Bahasa Inggris</option><option value="id">Bahasa Indonesia</option></select>
+                </div>
+                <button class="btn btn-primary" type="submit" id="analyzeResumeButton"><i class="bi bi-search me-2" aria-hidden="true"></i>Analisis CV</button>
+              </form>
+              <div id="resumeReviewResult" class="mt-4" aria-live="polite" hidden></div>
+            </div>
+            <div class="border border-secondary rounded-3 p-3 p-md-4">
+              <h3 class="h5 mb-3">Persiapan Wawancara</h3>
+              <form id="interviewPrepForm">
+                <div class="row g-3">
+                  <div class="col-sm-6"><label class="form-label" for="interviewJobTitle">Posisi tujuan</label><input class="form-control" id="interviewJobTitle" maxlength="200" required placeholder="Contoh: Analis Data Junior"></div>
+                  <div class="col-sm-6"><label class="form-label" for="interviewCompany">Perusahaan <span class="text-secondary fw-normal">(opsional)</span></label><input class="form-control" id="interviewCompany" maxlength="200" placeholder="Nama perusahaan"></div>
+                  <div class="col-12"><label class="form-label" for="interviewJobDescription">Deskripsi pekerjaan <span class="text-secondary fw-normal">(opsional)</span></label><textarea class="form-control" id="interviewJobDescription" rows="4" maxlength="10000" placeholder="Tempel deskripsi lowongan agar pertanyaan lebih relevan."></textarea></div>
+                  <div class="col-12"><label class="form-label" for="interviewResume">Ringkasan pengalaman / CV kamu <span class="text-secondary fw-normal">(opsional)</span></label><textarea class="form-control" id="interviewResume" rows="4" maxlength="10000" placeholder="Tambahkan ringkasan singkat agar latihan lebih sesuai. Jangan sertakan data pribadi yang sensitif."></textarea></div>
+                  <div class="col-12"><button class="btn btn-primary" type="submit" id="prepareInterviewButton"><i class="bi bi-chat-square-text me-2" aria-hidden="true"></i>Buat Latihan Wawancara</button></div>
+                </div>
+              </form>
+              <div id="interviewPrepResult" class="mt-4" aria-live="polite" hidden></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-split" role="tabpanel" aria-labelledby="tab-split" data-panel="split" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+        <div class="eyebrow mb-2">Patungan</div>
+        <h2 class="workspace-heading mb-2">Bagi tagihan tanpa ribut.</h2>
+        <p class="workspace-subtitle mb-3">Masukkan item, pajak, dan biaya layanan. Setiap orang mendapat bagian yang adil.</p>
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label" for="splitPeople">Siapa saja (pisah dengan koma)</label>
+            <input class="form-control" id="splitPeople" placeholder="Budi, Sinta, Andi">
+            <div class="row g-2 mt-1">
+              <div class="col-6"><label class="form-label" for="splitService">Biaya layanan (%)</label><input class="form-control" id="splitService" inputmode="decimal" value="0"></div>
+              <div class="col-6"><label class="form-label" for="splitTax">Pajak (%)</label><input class="form-control" id="splitTax" inputmode="decimal" value="0"></div>
+            </div>
+            <div class="form-check mt-3"><input class="form-check-input" type="checkbox" id="splitTaxAfterService" checked><label class="form-check-label" for="splitTaxAfterService">Pajak dihitung setelah biaya layanan</label></div>
+            <div class="form-text mt-2">Tidak ada persentase bawaan. Isi sesuai struk Anda.</div>
+          </div>
+          <div class="col-lg-7">
+            <label class="form-label" for="splitItems">Daftar item, satu per baris: <code>Nama | harga | siapa (opsional)</code></label>
+            <textarea class="form-control" id="splitItems" rows="7" placeholder="Nasi goreng | 25000 | Budi&#10;Es teh | 8rb | Budi, Sinta&#10;Pizza | 90.000"></textarea>
+            <div class="form-text">Harga boleh 25000, 25.000, 25rb, atau 1,5jt. Kolom ketiga kosong berarti dibagi rata ke semua orang.</div>
+            <div class="alert alert-danger small mt-3 mb-0" id="splitError" role="alert" hidden></div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="splitRun">Hitung</button></div>
+            <div class="mt-4" id="splitResult" hidden>
+              <div class="d-flex justify-content-between align-items-center mb-2"><label class="form-label mb-0" for="splitOutput">Hasil, siap tempel ke WhatsApp</label><button class="btn btn-outline-secondary btn-sm" type="button" id="splitCopy">Salin</button></div>
+              <textarea class="form-control" id="splitOutput" rows="8" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-diff" role="tabpanel" aria-labelledby="tab-diff" data-panel="diff" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+        <div class="eyebrow mb-2">Pembanding Daftar</div>
+        <h2 class="workspace-heading mb-2">Apa yang hilang, apa yang ganda.</h2>
+        <p class="workspace-subtitle mb-3">Bandingkan dua daftar nama atau kode tanpa rumus VLOOKUP.</p>
+          </div>
+          <div class="col-md-6"><label class="form-label" for="diffA">Daftar A (satu per baris)</label><textarea class="form-control" id="diffA" rows="8" placeholder="Budi&#10;Sinta&#10;Andi"></textarea></div>
+          <div class="col-md-6"><label class="form-label" for="diffB">Daftar B (satu per baris)</label><textarea class="form-control" id="diffB" rows="8" placeholder="Sinta&#10;Dewi"></textarea></div>
+          <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+            <div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="diffCase" checked><label class="form-check-label" for="diffCase">Abaikan huruf besar/kecil dan spasi ganda</label></div>
+            <button class="btn btn-primary btn-sm" type="button" id="diffRun">Bandingkan</button>
+          </div>
+          <div class="col-12"><div class="row g-3" id="diffResult" hidden></div></div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-margin" role="tabpanel" aria-labelledby="tab-margin" data-panel="margin" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+        <div class="eyebrow mb-2">Harga Jual &amp; Untung</div>
+        <h2 class="workspace-heading mb-2">Jual di harga yang tidak bikin rugi.</h2>
+        <p class="workspace-subtitle mb-3">Hitung harga jual ideal setelah semua potongan.</p>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-3">
+              <div class="col-6"><label class="form-label" for="mCost">Modal / HPP (Rp)</label><input class="form-control" id="mCost" inputmode="decimal" placeholder="50000"></div>
+              <div class="col-6"><label class="form-label" for="mFixed">Biaya tetap per pesanan (Rp)</label><input class="form-control" id="mFixed" inputmode="decimal" placeholder="0"></div>
+              <div class="col-6"><label class="form-label" for="mFee">Biaya admin marketplace (%)</label><input class="form-control" id="mFee" inputmode="decimal" placeholder="0"><div class="form-text">Isi sesuai tarif terbaru di seller center Anda.</div></div>
+              <div class="col-6"><label class="form-label" for="mProgram">Biaya program/ongkir (%)</label><input class="form-control" id="mProgram" inputmode="decimal" placeholder="0"></div>
+              <div class="col-6"><label class="form-label" for="mPromo">Biaya promosi/iklan (%)</label><input class="form-control" id="mPromo" inputmode="decimal" placeholder="0"></div>
+              <div class="col-6"><label class="form-label" for="mTarget">Target margin bersih (%)</label><input class="form-control" id="mTarget" inputmode="decimal" placeholder="20"></div>
+            </div>
+            <div class="alert alert-danger small mt-3 mb-0" id="marginError" role="alert" hidden></div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="marginRun">Hitung harga jual</button></div>
+          </div>
+          <div class="col-lg-6" id="marginResult" hidden>
+            <div class="table-responsive"><table class="table table-sm align-middle mb-0"><tbody id="marginRows"></tbody></table></div>
+            <div class="form-text mt-2">Tarif marketplace berubah dari waktu ke waktu, jadi aplikasi ini tidak menanam angka bawaan. Hasil dibulatkan ke atas per Rp100.</div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-table" role="tabpanel" aria-labelledby="tab-table" data-panel="table" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+        <div class="eyebrow mb-2">Teks ke Tabel</div>
+        <h2 class="workspace-heading mb-2">Dari chat acak jadi tabel rapi.</h2>
+        <p class="workspace-subtitle mb-3">Tempel daftar pesanan atau catatan, lalu unduh sebagai CSV yang bisa dibuka di Excel.</p>
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label" for="tableDelim">Pemisah kolom</label>
+            <select class="form-select" id="tableDelim">
+              <option value="auto">Deteksi otomatis</option><option value="tab">Tab</option><option value="pipe">Garis tegak ( | )</option>
+              <option value="semi">Titik koma ( ; )</option><option value="comma">Koma ( , )</option><option value="dash">Strip berspasi ( - )</option><option value="colon">Titik dua ( : )</option>
+            </select>
+            <div class="form-check mt-3"><input class="form-check-input" type="checkbox" id="tableHeader" checked><label class="form-check-label" for="tableHeader">Baris pertama adalah judul kolom</label></div>
+            <div class="form-check mt-2"><input class="form-check-input" type="checkbox" id="tableStripWa" checked><label class="form-check-label" for="tableStripWa">Buang cap waktu chat WhatsApp</label></div>
+            <div class="form-text mt-3">Diproses di browser Anda. Teks tidak diunggah.</div>
+          </div>
+          <div class="col-lg-7">
+            <label class="form-label" for="tableInput">Tempel teks (satu baris = satu data)</label>
+            <textarea class="form-control" id="tableInput" rows="8" placeholder="Nama | Pesanan | Jumlah&#10;Ani | Kaos hitam M | 2&#10;Budi | Kaos putih L | 1"></textarea>
+            <div class="alert alert-danger small mt-3 mb-0" id="tableError" role="alert" hidden></div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="tableRun">Buat tabel</button></div>
+          </div>
+          <div class="col-12" id="tableResult" hidden>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+              <div class="form-text" id="tableInfo" aria-live="polite"></div>
+              <div class="d-flex gap-2"><button class="btn btn-outline-secondary btn-sm" type="button" id="tableXlsx">Unduh .xlsx</button><button class="btn btn-outline-secondary btn-sm" type="button" id="tableCsvId">Unduh CSV (Excel Indonesia)</button><button class="btn btn-outline-secondary btn-sm" type="button" id="tableCsvSheets">Unduh CSV (Google Sheets)</button></div>
+            </div>
+            <div class="table-responsive"><table class="table table-sm table-bordered" id="tablePreview"></table></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-photopdf" role="tabpanel" aria-labelledby="tab-photopdf" data-panel="photopdf" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+        <div class="eyebrow mb-2">Foto ke PDF</div>
+        <h2 class="workspace-heading mb-2">Foto jadi satu PDF.</h2>
+        <p class="workspace-subtitle mb-3">Susun foto KTP, nota, atau ijazah dari HP menjadi satu file PDF.</p>
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label" for="photoFiles">Pilih foto (maks. 40, 20 MB/foto; total 100 MB)</label>
+            <input class="form-control" type="file" id="photoFiles" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" multiple>
+            <label class="form-label mt-3" for="photoMode">Ukuran halaman</label>
+            <select class="form-select" id="photoMode"><option value="a4">A4, foto dimuat ke halaman</option><option value="original">Ukuran asli foto</option></select>
+            <label class="form-label mt-3" for="photoMargin">Margin A4 (poin)</label>
+            <input class="form-control" id="photoMargin" type="number" min="0" max="100" step="1" inputmode="numeric" value="20">
+            <div class="form-text mt-3">Foto tidak diunggah. PDF dibuat di perangkat Anda.</div>
+          </div>
+          <div class="col-lg-7">
+            <div class="form-label">Urutan halaman</div>
+            <ul class="list-unstyled mb-2" id="photoList"></ul>
+            <div class="alert alert-danger small mb-2" id="photoError" role="alert" hidden></div>
+            <div class="d-flex gap-2"><button class="btn btn-primary btn-sm" type="button" id="photoBuild" disabled>Buat PDF</button><button class="btn btn-outline-secondary btn-sm" type="button" id="photoClear">Kosongkan</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-cleaner" role="tabpanel" aria-labelledby="tab-cleaner" data-panel="cleaner" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="eyebrow mb-2">Perapih File Excel</div>
+            <h2 class="workspace-heading mb-2">Rapikan file yang acak-acakan.</h2>
+            <p class="workspace-subtitle mb-3">Unggah Excel atau CSV, pilih jenis tiap kolom, lalu unduh versi yang sudah rapi.</p>
+          </div>
+          <div class="col-lg-4">
+            <label class="form-label" for="cleanFile">File Excel atau CSV (maks. 15 MB)</label>
+            <input class="form-control" type="file" id="cleanFile" accept=".xlsx,.xls,.csv">
+            <div class="form-text mt-2">Baris pertama dibaca sebagai judul kolom. Hanya sheet pertama yang diproses.</div>
+            <div class="alert alert-danger small mt-3 mb-0" id="cleanError" role="alert" hidden></div>
+          </div>
+          <div class="col-lg-8" id="cleanColumns" hidden>
+            <div class="form-text mb-2" id="cleanInfo" aria-live="polite"></div>
+            <div class="row g-2" id="cleanColumnList"></div>
+            <div class="row g-2 mt-1">
+              <div class="col-sm-4"><label class="form-label" for="cleanPhone">Format nomor HP</label><select class="form-select form-select-sm" id="cleanPhone"><option value="local">08xxxxxxxxxx</option><option value="intl">+628xxxxxxxxxx</option></select></div>
+              <div class="col-sm-4"><label class="form-label" for="cleanDate">Format tanggal</label><select class="form-select form-select-sm" id="cleanDate"><option value="iso">2024-03-05</option><option value="dmy">05/03/2024</option></select></div>
+              <div class="col-sm-4 d-flex align-items-end"><div class="form-check"><input class="form-check-input" type="checkbox" id="cleanDedupe" checked><label class="form-check-label" for="cleanDedupe">Hapus baris ganda</label></div></div>
+            </div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="cleanRun">Rapikan</button></div>
+          </div>
+          <div class="col-12" id="cleanResult" hidden>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+              <div class="form-text" id="cleanStats" aria-live="polite"></div>
+              <div class="d-flex gap-2"><button class="btn btn-outline-secondary btn-sm" type="button" id="cleanXlsx">Unduh .xlsx</button><button class="btn btn-outline-secondary btn-sm" type="button" id="cleanCsv">Unduh CSV</button></div>
+            </div>
+            <div class="table-responsive"><table class="table table-sm table-bordered" id="cleanPreview"></table></div>
+            <div class="form-text">Pratinjau 30 baris pertama. Nomor yang tidak dikenali sebagai HP Indonesia dibiarkan apa adanya. Diproses di browser Anda, file tidak diunggah.</div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-qr" role="tabpanel" aria-labelledby="tab-qr" data-panel="qr" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="eyebrow mb-2">QR Code</div>
+            <h2 class="workspace-heading mb-2">QR Code tanpa ribet.</h2>
+            <p class="workspace-subtitle mb-3">Ubah link, nomor WhatsApp, atau WiFi menjadi QR code siap unduh.</p>
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label" for="qrType">Jenis isi</label>
+            <select class="form-select" id="qrType"><option value="text">Teks atau link</option><option value="wa">Chat WhatsApp</option><option value="wifi">Akses WiFi</option></select>
+            <div class="mt-3" id="qrFieldText"><label class="form-label" for="qrText">Teks atau link</label><textarea class="form-control" id="qrText" rows="3" maxlength="1000" placeholder="https://boringstuff.com"></textarea></div>
+            <div class="mt-3" id="qrFieldWa" hidden>
+              <label class="form-label" for="qrWaNumber">Nomor WhatsApp</label><input class="form-control" id="qrWaNumber" inputmode="tel" placeholder="0812xxxxxxx">
+              <label class="form-label mt-2" for="qrWaText">Pesan awal (opsional)</label><input class="form-control" id="qrWaText" maxlength="300" placeholder="Halo, saya mau pesan...">
+            </div>
+            <div class="mt-3" id="qrFieldWifi" hidden>
+              <label class="form-label" for="qrSsid">Nama WiFi (SSID)</label><input class="form-control" id="qrSsid" maxlength="64">
+              <label class="form-label mt-2" for="qrSec">Keamanan</label><select class="form-select" id="qrSec"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">Tanpa password</option></select>
+              <div id="qrPassWrap"><label class="form-label mt-2" for="qrPass">Password</label><input class="form-control" id="qrPass" maxlength="64" autocomplete="off"></div>
+            </div>
+            <label class="form-label mt-3" for="qrEc">Tingkat koreksi kesalahan</label>
+            <select class="form-select" id="qrEc"><option value="L">L (data terbanyak)</option><option value="M" selected>M (seimbang)</option><option value="Q">Q</option><option value="H">H (paling tahan rusak)</option></select>
+            <div class="alert alert-danger small mt-3 mb-0" id="qrError" role="alert" hidden></div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="qrRun">Buat QR Code</button></div>
+          </div>
+          <div class="col-lg-7" id="qrResult" hidden>
+            <div class="d-inline-block bg-white p-2 rounded" id="qrPreview"></div>
+            <div class="d-flex gap-2 mt-3"><button class="btn btn-outline-secondary btn-sm" type="button" id="qrPng">Unduh PNG</button><button class="btn btn-outline-secondary btn-sm" type="button" id="qrSvg">Unduh SVG</button></div>
+            <div class="form-text mt-2">QR dibuat di browser Anda, tanpa iklan dan tanpa masa kedaluwarsa. Uji scan sebelum dicetak.</div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-images" role="tabpanel" aria-labelledby="tab-images" data-panel="images" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="eyebrow mb-2">Pengecil Gambar</div>
+            <h2 class="workspace-heading mb-2">Banyak foto, satu klik.</h2>
+            <p class="workspace-subtitle mb-3">Kecilkan ukuran dan ubah format puluhan foto sekaligus.</p>
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label" for="imgFiles">Pilih gambar (maks. 60, 20 MB/gambar; total 100 MB)</label>
+            <input class="form-control" type="file" id="imgFiles" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" multiple>
+            <div class="form-text" id="imgCount" aria-live="polite"></div>
+            <label class="form-label mt-3" for="imgMax">Sisi terpanjang maksimal (px, 0 = ukuran asli)</label>
+            <input class="form-control" id="imgMax" inputmode="numeric" value="1600">
+            <label class="form-label mt-3" for="imgFmt">Format hasil</label>
+            <select class="form-select" id="imgFmt"><option value="image/webp">WebP (paling kecil)</option><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select>
+            <div id="imgQWrap" class="mt-3"><label class="form-label" for="imgQ">Kualitas: <span id="imgQVal">80%</span></label><input class="form-range" type="range" id="imgQ" min="30" max="100" value="80"></div>
+            <div class="alert alert-danger small mt-3 mb-0" id="imgError" role="alert" hidden></div>
+            <div class="mt-3"><button class="btn btn-primary btn-sm" type="button" id="imgRun" disabled>Proses gambar</button></div>
+            <div class="form-text mt-2">Foto tidak diunggah. Info lokasi (EXIF) tidak ikut terbawa ke hasil.</div>
+          </div>
+          <div class="col-lg-7" id="imgResult" hidden>
+            <ul class="list-unstyled mb-2" id="imgOut"></ul>
+            <button class="btn btn-outline-secondary btn-sm" type="button" id="imgZip" hidden>Unduh semua (.zip)</button>
+          </div>
+        </div>
+      </div>
+      <div class="feature-panel" id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" data-legacy-panel="pdf" hidden aria-hidden="true">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <div class="eyebrow mb-2">03 / Optimalisasi PDF</div>
+            <h2 class="workspace-heading mb-2">Optimalkan PDF secara pribadi.</h2>
+            <p class="workspace-subtitle mb-0">See verified size savings and page count. Aman untuk teks mode preserves selectable content; image modes trade editability for smaller files. Files are processed locally.</p>
+          </div>
+          <div class="col-lg-7">
+            <form id="pdfForm">
+              <label class="form-label" for="pdfFile">Pilih PDF untuk diproses</label>
+              <label class="upload-zone w-100 mb-3" id="pdfUploadZone" for="pdfFile">
+                <span>
+                  <i class="bi bi-cloud-arrow-up d-block mb-2" aria-hidden="true"></i>
+                  <span class="d-block fw-semibold" id="fileName">Pilih PDF untuk memulai</span>
+                  <span class="form-text d-block mt-1" id="fileInfo" aria-live="polite">Letakkan file di sini atau pilih file</span>
+                  <span class="form-text d-block mt-1">Hanya PDF · Maksimal 25 MB · Mode gambar mendukung hingga 50 halaman</span>
+                </span>
+                <input class="visually-hidden" id="pdfFile" type="file" accept="application/pdf,.pdf" aria-label="Pilih file PDF">
+              </label>
+              <label class="form-label" for="pdfCompressionMode">Compression mode</label>
+              <select class="form-select mb-3" id="pdfCompressionMode">
+                <option value="lossless">Aman untuk teks optimization — best for documents</option>
+                <option value="balanced">Seimbang image compression</option>
+                <option value="strong">Smallest file — lower image quality</option>
+              </select>
+              <p class="form-text">Aman untuk teks mode verifies page count and existing selectable text, but may invalidate digital signatures. Seimbang lowers image quality; Maksimal uses smaller, lower-quality images. Both image modes rasterize pages and remove text selection and interactive elements. Always keep your original.</p>
+              <div class="alert alert-warning py-3" id="pdfLossyWarning" role="note" hidden>
+                <p class="mb-2">Image compression renders each page as an image. Searchable text, links, forms, digital signatures, and accessibility structure will not be preserved. Only use this for files where visual appearance matters more than editable text.</p>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="pdfLossyConsent">
+                  <label class="form-check-label" for="pdfLossyConsent">I understand and want to continue with image compression.</label>
+                </div>
+              </div>
+              <button class="btn btn-primary px-4 py-2 mb-3" id="optimizePdfButton" type="submit">
+                <i class="bi bi-arrows-angle-contract me-2" aria-hidden="true"></i>Optimalkan PDF
+              </button>
+              <div class="pdf-progress mb-3" id="pdfProgress" hidden role="status" aria-live="polite">
+                <div class="d-flex justify-content-between gap-3 mb-2">
+                  <span id="pdfProgressText">Optimizing document size...</span>
+                </div>
+                <div class="progress mb-2" id="pdfProgressTrack" role="presentation" hidden>
+                  <div class="progress-bar" id="pdfProgressBar" style="width:0%"></div>
+                </div>
+              </div>
+              <p class="form-text mb-0">Aman untuk teks mode keeps page content intact but may not reduce every file. Image modes can make scanned PDFs much smaller. Your original PDF is never changed.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-everyday" role="tabpanel" aria-labelledby="tab-everyday" data-panel="everyday" hidden>
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="eyebrow mb-2">04 / Peralatan teks</div>
+            <h2 class="workspace-heading mb-2">Selesaikan urusan teks dengan cepat.</h2>
+            <p class="workspace-subtitle mb-0">Alat praktis yang berjalan langsung di browser. Teks tetap berada di perangkatmu dan tidak diunggah.</p>
+          </div>
+          <div class="col-lg-4">
+            <label class="form-label" for="everydayTool">Pilih alat</label>
+            <select class="form-select" id="everydayTool">
+              <option value="word">Penghitung kata &amp; karakter</option>
+              <option value="case">Pengubah huruf</option>
+              <option value="duplicates">Hapus baris duplikat</option>
+              <option value="clean">Bersihkan teks</option>
+              <option value="bullets">Ubah menjadi daftar poin</option>
+              <option value="sanitize">Rapikan teks hasil salin dari PDF/web</option>
+              <option value="emails">Ambil alamat email</option>
+              <option value="phones">Ambil nomor HP (format 08xx)</option>
+            </select>
+            <div class="d-flex flex-wrap gap-2 mt-3" id="caseOptions" hidden>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-case="upper">UPPERCASE</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-case="lower">lowercase</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-case="title">Huruf Kapital Awal</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-case="sentence">Huruf Awal Kalimat Kapital</button>
+            </div>
+            <div class="form-text mt-3">Tidak perlu akun. Semua alat ini berjalan langsung di browser.</div>
+          </div>
+          <div class="col-lg-8">
+            <label class="form-label" for="everydayInput">Teks kamu</label>
+            <textarea class="form-control" id="everydayInput" rows="9" maxlength="50000" placeholder="Tempel atau ketik teks di sini..."></textarea>
+            <div class="d-flex flex-wrap justify-content-between gap-2 mt-2">
+              <div class="form-text" id="everydayStats" aria-live="polite">0 kata · 0 karakter</div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="clearEveryday">Hapus</button>
+                <button class="btn btn-primary btn-sm" type="button" id="runEveryday">Jalankan</button>
+              </div>
+            </div>
+            <div class="mt-4" id="everydayResultWrap" hidden>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <label class="form-label mb-0" for="everydayOutput">Hasil</label>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" type="button" id="copyEveryday">Salin hasil</button>
+                  <button class="btn btn-outline-secondary btn-sm" type="button" id="downloadEveryday">Unduh .txt</button>
+                </div>
+              </div>
+              <textarea class="form-control" id="everydayOutput" rows="8" readonly></textarea>
+              <div class="form-text mt-2" id="everydayResultStats"></div>
+            </div>
+          </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-4">
+            <div class="eyebrow mb-2">Asisten penulisan Gemini AI</div>
+            <h3 class="workspace-heading mb-2">Butuh lebih dari sekadar format teks?</h3>
+            <p class="workspace-subtitle">Tulis ulang teks, buat balasan email, ringkas teks panjang, perbaiki tata bahasa, atau terjemahkan. Teks pada alat AI dikirim ke Google Gemini. Jangan masukkan informasi sensitif.</p>
+            <div class="small text-secondary" id="writingAiStatus">Memeriksa ketersediaan Gemini…</div>
+          </div>
+          <div class="col-lg-8">
+            <form id="writingToolsForm">
+              <label class="form-label" for="writingAction">Tugas AI</label>
+              <select class="form-select mb-3" id="writingAction">
+                <option value="rewrite">Penulis ulang teks</option>
+                <option value="email_reply">Pembuat balasan email</option>
+                <option value="summarize">Perangkum teks</option>
+                <option value="grammar">Perbaikan tata bahasa</option>
+                <option value="translate">Penerjemah</option>
+                <option value="polite">Pesan sopan &amp; profesional</option>
+                <option value="formula">Pembuat rumus Excel/Sheets</option>
+              </select>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6"><label class="form-label" for="writingLanguage">Bahasa hasil</label><select class="form-select" id="writingLanguage"><option value="en">Bahasa Inggris</option><option value="id">Bahasa Indonesia</option></select></div>
+                <div class="col-sm-6"><label class="form-label" for="writingTone">Gaya bahasa</label><select class="form-select" id="writingTone"><option value="professional">Profesional</option><option value="friendly">Ramah</option><option value="concise">Ringkas</option><option value="formal">Formal</option><option value="natural">Natural</option></select></div>
+                <div class="col-sm-6" id="translateTargetWrap" hidden><label class="form-label" for="translateTarget">Terjemahkan ke</label><select class="form-select" id="translateTarget"><option value="English">Bahasa Inggris</option><option value="Bahasa Indonesia">Bahasa Indonesia</option><option value="Spanish">Spanyol</option><option value="French">Prancis</option><option value="German">Jerman</option><option value="Japanese">Jepang</option><option value="Korean">Korea</option><option value="Chinese">Mandarin</option><option value="Portuguese">Portugis</option><option value="Arabic">Arab</option></select></div>
+              </div>
+              <label class="form-label" for="writingInput">Teks yang akan diproses</label>
+              <textarea class="form-control mb-3" id="writingInput" rows="7" maxlength="12000" placeholder="Tempel teks kamu di sini…" required></textarea>
+              <div class="d-flex flex-wrap gap-2"><button class="btn btn-primary" type="submit" id="runWritingTool">Proses dengan Gemini</button><span class="form-text align-self-center">Batas penggunaan AI mungkin berlaku.</span></div>
+            </form>
+            <div class="mt-4" id="writingResultWrap" hidden>
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2"><label class="form-label mb-0" for="writingOutput">Hasil Gemini</label><button class="btn btn-outline-secondary btn-sm" type="button" id="copyWritingResult">Salin hasil</button></div>
+              <textarea class="form-control" id="writingOutput" rows="9" readonly></textarea>
+              <div class="form-text mt-2">Periksa nama, fakta, tanggal, dan komitmen sebelum menggunakan hasilnya.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-section mt-5" id="savedLibrary" aria-labelledby="libraryHeading">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+        <div>
+          <div class="eyebrow mb-2">Ruang kerja kamu</div>
+          <h2 class="section-label mb-0" id="libraryHeading">Perpustakaan saya</h2>
+        </div>
+        <span class="form-text" id="libraryCount" aria-live="polite">0 item tersimpan</span>
+      </div>
+      <p class="workspace-subtitle mb-3">Item tersimpan berada di server dan terhubung dengan cookie sesi browser ini. Menghapus cookie dapat membuatnya tidak dapat diakses. Jangan simpan data sensitif.</p>
+      <div class="library-card p-4 text-center" id="libraryEmpty">
+        <i class="bi bi-inboxes fs-3 d-block mb-2 text-secondary" aria-hidden="true"></i>
+        <p class="mb-0 text-secondary">Item yang kamu simpan akan muncul di sini.</p>
+      </div>
+      <div class="row g-3" id="libraryItems" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="py-4">
+    <div class="container-fluid px-3 px-lg-4 d-flex flex-wrap justify-content-between gap-2">
+      <span>© 2026 Boringstuff.com</span>
+      <span><a href="/privacy">Privasi</a> · <a href="/terms">Ketentuan</a> · Dibuat untuk membantu urusan kecil sehari-hari.</span>
+    </div>
+  </footer>
+
+  <div class="luxury-loader" id="luxuryLoader" aria-hidden="true">
+    <div class="loader-card" role="status" aria-live="polite" aria-atomic="true">
+      <div class="loader-emblem" aria-hidden="true">
+        <span class="loader-ring loader-ring-one"></span>
+        <span class="loader-ring loader-ring-two"></span>
+        <span class="loader-core">b.</span>
+      </div>
+      <div class="loader-kicker">Boringstuff Studio</div>
+      <p class="loader-title" id="loaderTitle">Menyiapkan hasil</p>
+      <p class="loader-copy" id="loaderCopy">Tunggu sebentar, kami sedang memproses detailnya.</p>
+      <div class="loader-track" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast" id="demoToast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">Permintaan kamu sedang diproses.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Tutup"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const featureCards = [...document.querySelectorAll("[data-feature]")];
+    const featurePanels = [...document.querySelectorAll("[data-panel]")];
+
+    function showFeature(feature) {
+      if (!featureCards.some((card) => card.dataset.feature === feature)) return;
+      featureCards.forEach((card) => {
+        const selected = card.dataset.feature === feature;
+        card.classList.toggle("active", selected);
+        card.setAttribute("aria-selected", String(selected));
+        card.tabIndex = selected ? 0 : -1;
+      });
+      featurePanels.forEach((panel) => {
+        const selected = panel.dataset.panel === feature;
+        panel.classList.toggle("active", selected);
+        panel.hidden = !selected;
+      });
+    }
+
+    featureCards.forEach((card) => {
+      card.addEventListener("click", () => showFeature(card.dataset.feature));
+      card.addEventListener("keydown", (event) => {
+        const currentIndex = featureCards.indexOf(card);
+        let nextIndex;
+        if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % featureCards.length;
+        if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + featureCards.length) % featureCards.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = featureCards.length - 1;
+        if (nextIndex === undefined) return;
+        event.preventDefault();
+        featureCards[nextIndex].focus();
+        showFeature(featureCards[nextIndex].dataset.feature);
+      });
+    });
+    showFeature("document");
+
+    const toast = bootstrap.Toast.getOrCreateInstance(document.getElementById("demoToast"), { delay: 3500 });
+    const toastMessage = document.getElementById("toastMessage");
+    const pdfInput = document.getElementById("pdfFile");
+    let selectedPdfFile = null;
+    let pdfProcessing = false;
+    const libraryItemsContainer = document.getElementById("libraryItems");
+    const libraryEmpty = document.getElementById("libraryEmpty");
+    const libraryCount = document.getElementById("libraryCount");
+    let apiReady = false;
+    let savedLibraryItems = [];
+
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.show();
+    }
+
+    const luxuryLoader = document.getElementById("luxuryLoader");
+    const loaderTitle = document.getElementById("loaderTitle");
+    const loaderCopy = document.getElementById("loaderCopy");
+    let activeRequests = 0;
+    let loaderShowTimer = null;
+    let loaderShownAt = 0;
+
+    function beginLuxuryLoading(url) {
+      activeRequests += 1;
+      if (activeRequests > 1 || luxuryLoader.classList.contains("is-visible")) return;
+      const messages = url.includes("captions")
+        ? ["Menyiapkan caption", "Menyempurnakan susunan kata dan variasi."]
+        : url.includes("documents")
+          ? ["Menyiapkan dokumen", "Menyusun detail dokumen."]
+          : url.includes("pdf")
+            ? ["Mengoptimalkan PDF", "Memeriksa file dan menjaga bagian penting."]
+            : ["Sedang memproses", "Ruang kerja kamu is being updated."];
+      loaderTitle.textContent = messages[0];
+      loaderCopy.textContent = messages[1];
+      loaderShowTimer = window.setTimeout(() => {
+        if (!activeRequests) return;
+        luxuryLoader.classList.add("is-visible");
+        luxuryLoader.setAttribute("aria-hidden", "false");
+        document.body.setAttribute("aria-busy", "true");
+        loaderShownAt = Date.now();
+      }, 180);
+    }
+
+    async function endLuxuryLoading() {
+      activeRequests = Math.max(0, activeRequests - 1);
+      if (activeRequests) return;
+      window.clearTimeout(loaderShowTimer);
+      if (!luxuryLoader.classList.contains("is-visible")) return;
+      const remaining = Math.max(0, 520 - (Date.now() - loaderShownAt));
+      await new Promise((resolve) => window.setTimeout(resolve, remaining));
+      if (activeRequests) return;
+      luxuryLoader.classList.remove("is-visible");
+      luxuryLoader.setAttribute("aria-hidden", "true");
+      document.body.removeAttribute("aria-busy");
+    }
+
+    async function apiRequest(url, options = {}, rawResponse = false) {
+      beginLuxuryLoading(url);
+      try {
+        const response = await fetch(url, { credentials: "same-origin", ...options });
+        if (!response.ok) {
+          const payload = await response.json().catch(() => ({}));
+          const localizedErrors = {
+            ai_not_configured: "Fitur ini memerlukan Gemini AI. Atur GEMINI_API_KEY di file .env lalu mulai ulang aplikasi.",
+            ai_quota_exceeded: "Kuota atau batas permintaan Gemini telah tercapai. Coba lagi nanti.",
+            ai_usage_limit: "Batas penggunaan AI aplikasi telah tercapai. Silakan coba lagi nanti.",
+            ai_configuration_error: "Google Gemini menolak permintaan. Periksa kunci API, akses API, dan nama model.",
+            ai_provider_error: "Layanan Gemini sedang bermasalah. Coba lagi nanti.",
+            ai_connection_error: "Tidak dapat menghubungi Gemini. Periksa koneksi internet.",
+            ai_empty_response: "Gemini tidak menghasilkan jawaban. Ubah masukan lalu coba lagi.",
+            ai_output_validation: "Hasil AI tidak memenuhi format yang diperlukan. Coba lagi dengan masukan lebih jelas.",
+            ai_invalid_json: "Gemini mengembalikan data dengan format yang tidak valid. Coba lagi.",
+            ai_invalid_response: "Respons Gemini tidak dapat dibaca. Coba lagi.",
+            file_too_large: "Ukuran file melebihi batas yang diizinkan.",
+            invalid_pdf: "File yang dipilih bukan PDF yang valid.",
+            unsupported_pdf: "PDF rusak, dilindungi kata sandi, atau tidak didukung."
+          };
+          const error = new Error(localizedErrors[payload.code] || payload.error || `Server mengembalikan status ${response.status}.`);
+          error.code = payload.code;
+          error.status = response.status;
+          showToast(error.message);
+          throw error;
+        }
+        return rawResponse ? response : response.json();
+      } catch (error) {
+        if (!error.status) {
+          console.error("Tidak dapat terhubung ke server Python lokal.", error);
+          showToast("Tidak dapat terhubung ke server Python. Jalankan dengan .venv\\Scripts\\python.exe app.py.");
+        }
+        throw error;
+      } finally {
+        await endLuxuryLoading();
+      }
+    }
+
+    // Everyday utilities are deterministic and run only in this browser.
+    const everydayInput = document.getElementById("everydayInput");
+    const everydayOutput = document.getElementById("everydayOutput");
+    const everydayTool = document.getElementById("everydayTool");
+    const everydayStats = document.getElementById("everydayStats");
+    const everydayResultWrap = document.getElementById("everydayResultWrap");
+    const caseOptions = document.getElementById("caseOptions");
+    let selectedCase = "upper";
+    function countText(value) {
+      const trimmed = value.trim();
+      let words = trimmed ? (trimmed.match(/\S+/g) || []).length : 0;
+      let chars = [...value].length;
+      let charsNoSpaces = [...value].filter((char) => !/\s/u.test(char)).length;
+      try {
+        if (typeof Intl.Segmenter === "function") {
+          words = [...new Intl.Segmenter("id", { granularity: "word" }).segment(value)]
+            .filter((part) => part.isWordLike).length;
+          const graphemes = [...new Intl.Segmenter("id", { granularity: "grapheme" }).segment(value)];
+          chars = graphemes.length;
+          charsNoSpaces = graphemes.filter((part) => !/^\s+$/u.test(part.segment)).length;
+        }
+      } catch (_) { /* Gunakan fallback Unicode jika Segmenter tidak tersedia. */ }
+      const sentences = (value.match(/[.!?]+(?=\s|$)/g) || []).length;
+      return { words, chars, charsNoSpaces, sentences, lines: value ? value.split(/\r?\n/).length : 0 };
+    }
+    function updateEverydayStats() {
+      const stats = countText(everydayInput.value);
+      everydayStats.textContent = `${stats.words} kata · ${stats.chars} karakter · ${stats.charsNoSpaces} tanpa spasi · ${stats.lines} baris`;
+    }
+    everydayInput.addEventListener("input", updateEverydayStats);
+    everydayTool.addEventListener("change", () => { caseOptions.hidden = everydayTool.value !== "case"; });
+    document.querySelectorAll("[data-case]").forEach((button) => button.addEventListener("click", () => {
+      selectedCase = button.dataset.case;
+      document.querySelectorAll("[data-case]").forEach((item) => item.classList.toggle("active", item === button));
+    }));
+    function titleCase(text) { return text.toLocaleLowerCase().replace(/(^|[\s-])([\p{L}\p{N}])/gu, (_, prefix, letter) => prefix + letter.toLocaleUpperCase()); }
+    document.getElementById("runEveryday").addEventListener("click", () => {
+      const source = everydayInput.value;
+      if (!source.trim()) { showToast("Masukkan teks terlebih dahulu."); return; }
+      let result = source;
+      switch (everydayTool.value) {
+        case "word": {
+          const c = countText(source);
+          result = `Kata: ${c.words}\nKarakter: ${c.chars}\nKarakter tanpa spasi: ${c.charsNoSpaces}\nBaris: ${c.lines}\nKalimat (perkiraan): ${c.sentences}\n\nWaktu baca: ${c.words ? Math.max(1, Math.ceil(c.words / 200)) : 0} menit`;
+          break;
+        }
+        case "case":
+          if (selectedCase === "upper") result = source.toLocaleUpperCase();
+          if (selectedCase === "lower") result = source.toLocaleLowerCase();
+          if (selectedCase === "title") result = titleCase(source);
+          if (selectedCase === "sentence") result = source.toLocaleLowerCase("id-ID").replace(/(^\s*|[.!?]\s+|\n\s*)([\p{L}])/gu, (_, prefix, letter) => prefix + letter.toLocaleUpperCase("id-ID"));
+          break;
+        case "duplicates": {
+          const seen = new Set();
+          result = source.split(/\r?\n/).filter((line) => { const key = line.trim().toLocaleLowerCase(); if (!key || seen.has(key)) return false; seen.add(key); return true; }).join("\n");
+          break;
+        }
+        case "clean":
+          result = source.replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/[\t ]+/g, " ").trim()).join("\n").replace(/\n{3,}/g, "\n\n").trim();
+          break;
+        case "sanitize":
+          result = source.replace(/\r\n?/g, "\n").replace(/[\u00a0\u200b-\u200d\ufeff]/g, " ").replace(/(\p{L})-\n(?=\p{Ll})/gu, "$1").split(/\n\s*\n/).map((para) => para.replace(/\s*\n\s*/g, " ").replace(/[\t ]{2,}/g, " ").trim()).filter(Boolean).join("\n\n");
+          break;
+        case "emails": {
+          const found = [...new Set((source.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g) || []).map((m) => m.toLowerCase()))];
+          result = found.length ? found.join("\n") : "Tidak ada alamat email ditemukan.";
+          break;
+        }
+        case "phones": {
+          const found = new Set();
+          (source.match(/(?:\+62|62|0)\s?8\d(?:[\s.-]?\d){6,11}/g) || []).forEach((m) => { let d = m.replace(/\D/g, ""); if (d.startsWith("62")) d = "0" + d.slice(2); if (/^08\d{7,12}$/.test(d)) found.add(d); });
+          result = found.size ? [...found].join("\n") : "Tidak ada nomor HP Indonesia ditemukan.";
+          break;
+        }
+        case "bullets":
+          result = source.split(/\r?\n/).map((line) => line.trim()).filter(Boolean).map((line) => `• ${line.replace(/^(?:(?:[-*•])\s*|\d+[.)]\s*)+/, "")}`).join("\n");
+          break;
+      }
+      everydayOutput.value = result;
+      everydayResultWrap.hidden = false;
+      const stats = countText(result);
+      document.getElementById("everydayResultStats").textContent = `${stats.words} kata · ${stats.chars} karakter`;
+    });
+    document.getElementById("clearEveryday").addEventListener("click", () => { everydayInput.value = ""; everydayOutput.value = ""; everydayResultWrap.hidden = true; updateEverydayStats(); });
+    document.getElementById("copyEveryday").addEventListener("click", async () => { try { await navigator.clipboard.writeText(everydayOutput.value); showToast("Hasil berhasil disalin."); } catch { everydayOutput.select(); document.execCommand("copy"); showToast("Hasil berhasil disalin."); } });
+    document.getElementById("downloadEveryday").addEventListener("click", () => { const blob = new Blob([everydayOutput.value], {type:"text/plain;charset=utf-8"}); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = "boringstuff-result.txt"; a.click(); URL.revokeObjectURL(url); });
+
+    const writingAction = document.getElementById("writingAction");
+    const writingAiStatus = document.getElementById("writingAiStatus");
+    writingAction.addEventListener("change", () => { document.getElementById("translateTargetWrap").hidden = writingAction.value !== "translate"; });
+    document.getElementById("writingToolsForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const text = document.getElementById("writingInput").value.trim();
+      if (!text) { showToast("Tempel teks yang ingin diproses."); return; }
+      const button = document.getElementById("runWritingTool"); button.disabled = true;
+      try {
+        const payload = {action: writingAction.value, text, tone: document.getElementById("writingTone").value, language: document.getElementById("writingLanguage").value, targetLanguage: document.getElementById("translateTarget").value};
+        const result = await apiRequest("/api/writing-tools", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)});
+        document.getElementById("writingOutput").value = result.result;
+        document.getElementById("writingResultWrap").hidden = false;
+        showToast("Gemini selesai memproses teks kamu.");
+      } catch (error) { console.error(error); } finally { button.disabled = false; }
+    });
+    document.getElementById("copyWritingResult").addEventListener("click", async () => { try { await navigator.clipboard.writeText(document.getElementById("writingOutput").value); showToast("Hasil AI berhasil disalin."); } catch { showToast("Browser ini tidak mengizinkan akses papan klip."); } });
+
+    function renderSavedLibrary() {
+      libraryItemsContainer.replaceChildren();
+      libraryEmpty.hidden = savedLibraryItems.length > 0;
+      libraryCount.textContent = `${savedLibraryItems.length} ${savedLibraryItems.length} item tersimpan`;
+      savedLibraryItems.forEach((item) => {
+        const column = document.createElement("div");
+        column.className = "col-12 col-lg-6";
+        const card = document.createElement("article");
+        card.className = "library-card h-100 p-3 p-md-4";
+        const heading = document.createElement("h3");
+        heading.className = "section-label mb-1";
+        heading.textContent = item.title;
+        const meta = document.createElement("p");
+        meta.className = "form-text mb-3";
+        const savedDate = new Date(item.createdAt);
+        meta.textContent = `${item.kind === "document" ? "Dokumen" : "Konten lama"} · ${
+          Number.isNaN(savedDate.getTime()) ? "Item tersimpan" : savedDate.toLocaleString()
+        }`;
+        const preview = document.createElement("p");
+        preview.className = "library-content mb-3";
+        preview.textContent = item.content;
+        const actions = document.createElement("div");
+        actions.className = "d-flex flex-wrap gap-2";
+        [
+          ["open", "Buka", "btn-primary"],
+          ["copy", "Salin", "btn-outline-secondary"],
+          ["delete", "Hapus", "btn-outline-danger"]
+        ].forEach(([action, label, style]) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `btn ${style} btn-sm`;
+          button.dataset.libraryAction = action;
+          button.dataset.libraryId = item.id;
+          button.textContent = label;
+          actions.appendChild(button);
+        });
+        card.append(heading, meta, preview, actions);
+        column.appendChild(card);
+        libraryItemsContainer.appendChild(column);
+      });
+    }
+
+    async function saveLibraryEntry({ kind, title, content, data }) {
+      const cleanContent = content.trim();
+      if (!cleanContent) {
+        showToast("Belum ada konten untuk disimpan.");
+        return false;
+      }
+      try {
+        const entry = await apiRequest("/api/library", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ kind, title, content: cleanContent, data })
+        });
+        savedLibraryItems = [entry, ...savedLibraryItems];
+        renderSavedLibrary();
+        showToast("Berhasil disimpan ke Perpustakaan pada perangkat ini.");
+        return true;
+      } catch (error) {
+        console.error("Tidak dapat menyimpan item perpustakaan.", error);
+        return false;
+      }
+    }
+
+    function updateAvailabilityUI() {
+      pdfInput.disabled = !apiReady || pdfProcessing;
+      const compressionModeSelect = document.getElementById("pdfCompressionMode");
+      if (compressionModeSelect) compressionModeSelect.disabled = !apiReady || pdfProcessing;
+      document.getElementById("optimizePdfButton").disabled = !apiReady || pdfProcessing;
+      document.getElementById("generateDocumentButton").disabled = !apiReady;
+      document.getElementById("downloadDocumentButton").disabled = !apiReady;
+      document.getElementById("downloadDocxButton").disabled = !apiReady;
+      document.querySelector('#socialForm button[type="submit"]').disabled = !apiReady;
+      const socialText = document.getElementById("socialCaptionOutput");
+      const socialCopyButton = document.getElementById("copySocialCaptionButton");
+      const socialPlatformSelect = document.getElementById("socialPlatform");
+      if (socialText && socialCopyButton && socialPlatformSelect) {
+        const overLimit = socialPlatformSelect.value === "x" && socialText.value.length > 280;
+        socialCopyButton.disabled = !apiReady || !socialText.value.trim() || overLimit;
+        ["copyCaptionAlternative2", "copyCaptionAlternative3"].forEach((id, index) => {
+          const alternative = document.getElementById(index === 0 ? "captionAlternative2" : "captionAlternative3");
+          const copyButton = document.getElementById(id);
+          if (alternative && copyButton) {
+            const alternativeOverLimit = socialPlatformSelect.value === "x" && alternative.value.length > 280;
+            copyButton.disabled = !apiReady || !alternative.value.trim() || alternativeOverLimit;
+          }
+        });
+      }
+      const saveButton = document.getElementById("saveCaptionButton");
+      if (saveButton) {
+        const overLimit = socialPlatformSelect.value === "x" && socialText.value.length > 280;
+        saveButton.disabled = !apiReady || !socialText.value.trim() || overLimit;
+      }
+    }
+
+    updateAvailabilityUI();
+
+    const socialForm = document.getElementById("socialForm");
+    const socialOutput = document.getElementById("socialOutput");
+    const socialCaptionOutput = document.getElementById("socialCaptionOutput");
+    const socialPlatform = document.getElementById("socialPlatform");
+    const captionCount = document.getElementById("captionCount");
+    const copySocialCaptionButton = document.getElementById("copySocialCaptionButton");
+    const captionAlternative2 = document.getElementById("captionAlternative2");
+    const captionAlternative3 = document.getElementById("captionAlternative3");
+    const copyCaptionAlternative2 = document.getElementById("copyCaptionAlternative2");
+    const copyCaptionAlternative3 = document.getElementById("copyCaptionAlternative3");
+    const ctaSuggestions = document.getElementById("ctaSuggestions");
+    const saveCaptionButton = document.getElementById("saveCaptionButton");
+    let generatedSocialCaption = "";
+
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch {
+          // Use the legacy API if browser permissions block the Clipboard API.
+        }
+      }
+
+      const copyBuffer = document.createElement("textarea");
+      copyBuffer.value = text;
+      copyBuffer.setAttribute("readonly", "");
+      Object.assign(copyBuffer.style, { position: "fixed", opacity: "0" });
+      document.body.appendChild(copyBuffer);
+      copyBuffer.select();
+      try {
+        if (!document.execCommand("copy")) throw new Error("Browser ini tidak mengizinkan akses papan klip.");
+      } finally {
+        copyBuffer.remove();
+      }
+    }
+
+    function updateCaptionCounter() {
+      const isX = socialPlatform.value === "x";
+      const length = socialCaptionOutput.value.length;
+      socialCaptionOutput.maxLength = isX ? 280 : 5000;
+      captionAlternative2.maxLength = isX ? 280 : 5000;
+      captionAlternative3.maxLength = isX ? 280 : 5000;
+      captionCount.textContent = isX ? `${length}/280 karakter for X` : `${length} karakter`;
+      const overLimit = isX && length > 280;
+      const alternative2OverLimit = isX && captionAlternative2.value.length > 280;
+      const alternative3OverLimit = isX && captionAlternative3.value.length > 280;
+      captionCount.classList.toggle("over-limit", overLimit);
+      copySocialCaptionButton.disabled = !apiReady || !socialCaptionOutput.value.trim() || overLimit;
+      copyCaptionAlternative2.disabled = !apiReady || !captionAlternative2.value.trim() || alternative2OverLimit;
+      copyCaptionAlternative3.disabled = !apiReady || !captionAlternative3.value.trim() || alternative3OverLimit;
+      saveCaptionButton.disabled = !apiReady || !socialCaptionOutput.value.trim() || overLimit;
+    }
+
+    function invalidateSocialDraft(event) {
+      if ([socialCaptionOutput, captionAlternative2, captionAlternative3].includes(event.target) || socialOutput.hidden) return;
+      generatedSocialCaption = "";
+      socialCaptionOutput.value = "";
+      captionAlternative2.value = "";
+      captionAlternative3.value = "";
+      ctaSuggestions.replaceChildren();
+      socialOutput.hidden = true;
+      updateCaptionCounter();
+    }
+
+    socialForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const postDetailsInput = document.getElementById("postDetails");
+      postDetailsInput.setCustomValidity(
+        postDetailsInput.value.trim() ? "" : "Please describe the post before generating a caption."
+      );
+      if (!socialForm.reportValidity()) return;
+      const submitButton = socialForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      try {
+        const result = await apiRequest("/api/captions/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            category: document.getElementById("socialCategory").value,
+            platform: socialPlatform.value,
+            objective: document.getElementById("socialObjective").value,
+            language: document.getElementById("socialLanguage").value,
+            tone: document.getElementById("socialTone").value,
+            topic: document.getElementById("postDetails").value.trim(),
+            audience: document.getElementById("targetAudience").value.trim(),
+            keyBenefit: document.getElementById("socialKeyBenefit").value.trim(),
+            callToAction: document.getElementById("socialCallToAction").value.trim(),
+            hashtagCount: document.getElementById("hashtagCount").value
+          })
+        });
+        generatedSocialCaption = result.content;
+        document.getElementById("captionGenerationMode").textContent = "Dibuat dengan Gemini AI. Periksa klaim dan detail merek sebelum dipublikasikan.";
+        socialCaptionOutput.value = result.content;
+        captionAlternative2.value = result.variants?.[1] || "";
+        captionAlternative3.value = result.variants?.[2] || "";
+        ctaSuggestions.replaceChildren();
+        (Array.isArray(result.ctaSuggestions) ? result.ctaSuggestions : []).forEach((suggestion) => {
+          const button = document.createElement("button");
+          button.className = "btn btn-sm btn-outline-secondary";
+          button.type = "button";
+          button.textContent = suggestion;
+          button.addEventListener("click", () => {
+            const callToAction = document.getElementById("socialCallToAction");
+            callToAction.value = suggestion;
+            callToAction.dispatchEvent(new Event("input", { bubbles: true }));
+            callToAction.focus();
+            showToast("Ajakan dipilih. Buat ulang konten untuk memasukkannya ke draf.");
+          });
+          ctaSuggestions.append(button);
+        });
+        socialOutput.hidden = false;
+        updateCaptionCounter();
+      } catch (error) {
+        generatedSocialCaption = "";
+        console.error("Could not generate the social caption.", error);
+      } finally {
+        submitButton.disabled = !apiReady;
+      }
+    });
+
+    socialForm.addEventListener("input", invalidateSocialDraft);
+    socialForm.addEventListener("change", (event) => {
+      invalidateSocialDraft(event);
+      if (event.target === socialPlatform) updateCaptionCounter();
+    });
+
+    document.getElementById("postDetails").addEventListener("input", (event) => {
+      event.target.setCustomValidity(
+        event.target.value.trim() ? "" : "Please describe the post before generating a caption."
+      );
+    });
+
+    socialCaptionOutput.addEventListener("input", () => {
+      generatedSocialCaption = socialCaptionOutput.value;
+      updateCaptionCounter();
+    });
+    captionAlternative2.addEventListener("input", updateCaptionCounter);
+    captionAlternative3.addEventListener("input", updateCaptionCounter);
+
+    async function copyCaptionDraft(text, draftNumber) {
+      if (!text.trim()) {
+        toastMessage.textContent = "Buat konten terlebih dahulu sebelum menyalinnya.";
+        toast.show();
+        return;
+      }
+
+      try {
+        await copyTextToClipboard(text);
+      } catch (error) {
+        console.error(`Could not copy caption draft ${draftNumber}.`, error);
+        toastMessage.textContent = "Tidak dapat menyalin caption. Periksa izin papan klip lalu coba lagi.";
+        toast.show();
+        return;
+      }
+
+      toastMessage.textContent = `Draf caption ${draftNumber} berhasil disalin.`;
+      toast.show();
+    }
+
+    copySocialCaptionButton.addEventListener("click", () =>
+      copyCaptionDraft(socialCaptionOutput.value, 1));
+    copyCaptionAlternative2.addEventListener("click", () =>
+      copyCaptionDraft(captionAlternative2.value, 2));
+    copyCaptionAlternative3.addEventListener("click", () =>
+      copyCaptionDraft(captionAlternative3.value, 3));
+
+    saveCaptionButton.addEventListener("click", async () => {
+      if (!generatedSocialCaption) {
+        showToast("Buat caption terlebih dahulu sebelum menyimpannya.");
+        return;
+      }
+      const settings = {
+        category: document.getElementById("socialCategory").value,
+        platform: socialPlatform.value,
+        objective: document.getElementById("socialObjective").value,
+        language: document.getElementById("socialLanguage").value,
+        tone: document.getElementById("socialTone").value,
+        topic: document.getElementById("postDetails").value.trim(),
+        audience: document.getElementById("targetAudience").value.trim(),
+        keyBenefit: document.getElementById("socialKeyBenefit").value.trim(),
+        callToAction: document.getElementById("socialCallToAction").value.trim(),
+        hashtagCount: document.getElementById("hashtagCount").value
+      };
+      await saveLibraryEntry({
+        kind: "caption",
+        title: `${socialPlatform.options[socialPlatform.selectedIndex].text}: ${settings.topic}`.slice(0, 100),
+        content: socialCaptionOutput.value,
+        data: settings
+      });
+    });
+
+    async function loadAiStatus() {
+      try {
+        const status = await apiRequest("/api/ai/status");
+        if (writingAiStatus) writingAiStatus.textContent = status.enabled ? `Kunci Gemini terdeteksi · ${status.model}. Jalankan satu permintaan untuk memastikan API dapat digunakan.` : "Gemini diperlukan. Tambahkan GEMINI_API_KEY ke .env, lalu mulai ulang aplikasi.";
+        const mode = status.enabled ? `Gemini is configured (${status.model}). Submitted text is sent to Google for generation.` : "Gemini is required for this feature. Add GEMINI_API_KEY to .env and restart the app.";
+        document.getElementById("docGenerationMode").textContent = mode;
+        document.getElementById("captionGenerationMode").textContent = mode;
+        document.getElementById("generateDocumentButton").disabled = !status.enabled;
+        document.querySelector('#socialForm button[type="submit"]').disabled = !status.enabled;
+        document.getElementById("runWritingTool").disabled = !status.enabled;
+        document.getElementById("careerLanguage").disabled = !status.enabled;
+        ["analyzeResumeButton", "prepareInterviewButton"].forEach((id) => {
+          const button = document.getElementById(id);
+          if (button) button.disabled = !status.enabled;
+        });
+      } catch (error) {
+        console.warn("Could not load AI status.", error);
+      }
+    }
+    loadAiStatus();
+
+    function appendTextSection(container, title, value) {
+      const section = document.createElement("section");
+      section.className = "mb-3";
+      const heading = document.createElement("h4");
+      heading.className = "h6 mb-2";
+      heading.textContent = title;
+      section.append(heading);
+      if (Array.isArray(value)) {
+        const list = document.createElement("ul");
+        list.className = "mb-0 ps-3";
+        value.forEach((entry) => {
+          const item = document.createElement("li");
+          item.textContent = typeof entry === "string" ? entry : `${entry.original || ""}\nSaran: ${entry.improved || ""}`;
+          list.append(item);
+        });
+        section.append(list);
+      } else {
+        const paragraph = document.createElement("p");
+        paragraph.className = "mb-0";
+        paragraph.textContent = value || "—";
+        section.append(paragraph);
+      }
+      container.append(section);
+    }
+
+    document.getElementById("resumeReviewForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = document.getElementById("analyzeResumeButton");
+      const resultBox = document.getElementById("resumeReviewResult");
+      button.disabled = true;
+      button.textContent = "Menganalisis…";
+      try {
+        const result = await apiRequest("/api/resume/analyze", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            resumeText: document.getElementById("resumeReviewText").value.trim(),
+            jobDescription: document.getElementById("resumeReviewJob").value.trim(),
+            language: document.getElementById("careerLanguage").value
+          })
+        });
+        resultBox.replaceChildren();
+        const score = document.createElement("div");
+        score.className = "display-5 fw-semibold mb-2";
+        score.textContent = `${result.score}/100`;
+        const summary = document.createElement("p");
+        summary.className = "mb-3";
+        summary.textContent = result.summary || "Pemeriksaan selesai.";
+        resultBox.append(score, summary);
+        appendTextSection(resultBox, "Kekuatan", result.strengths);
+        appendTextSection(resultBox, "Bukti yang perlu dilengkapi", result.gaps);
+        appendTextSection(resultBox, "Keykata to consider (only if accurate)", result.keykataToConsider);
+        appendTextSection(resultBox, "Perbaikan poin pengalaman", result.bulletRewrites);
+        appendTextSection(resultBox, "Langkah berikutnya", result.nextSteps);
+        const disclaimer = document.createElement("p");
+        disclaimer.className = "small text-secondary mb-0";
+        disclaimer.textContent = result.disclaimer || "Panduan berbantuan AI; periksa semua saran.";
+        resultBox.append(disclaimer);
+        resultBox.hidden = false;
+      } catch (error) {
+        showToast(error.message || "Resume analysis failed. Check your Gemini setup.");
+      } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="bi bi-search me-2" aria-hidden="true"></i>Analisis CV';
+      }
+    });
+
+    document.getElementById("interviewPrepForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = document.getElementById("prepareInterviewButton");
+      const resultBox = document.getElementById("interviewPrepResult");
+      button.disabled = true;
+      button.textContent = "Menyiapkan…";
+      try {
+        const result = await apiRequest("/api/interview/prepare", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            jobTitle: document.getElementById("interviewJobTitle").value.trim(),
+            companyName: document.getElementById("interviewCompany").value.trim(),
+            jobDescription: document.getElementById("interviewJobDescription").value.trim(),
+            resumeText: document.getElementById("interviewResume").value.trim(),
+            language: document.getElementById("careerLanguage").value
+          })
+        });
+        resultBox.replaceChildren();
+        appendTextSection(resultBox, "Ringkasan posisi", result.roleOverview);
+        const heading = document.createElement("h4");
+        heading.className = "h6 mb-2";
+        heading.textContent = "Pertanyaan latihan";
+        resultBox.append(heading);
+        (result.questions || []).forEach((entry, index) => {
+          const card = document.createElement("article");
+          card.className = "border border-secondary rounded-3 p-3 mb-2";
+          const question = document.createElement("h5");
+          question.className = "h6";
+          question.textContent = `${index + 1}. ${entry.question || "Pertanyaan"}`;
+          const type = document.createElement("p");
+          type.className = "small text-secondary mb-2";
+          type.textContent = entry.type || "Pertanyaan wawancara";
+          const assesses = document.createElement("p");
+          assesses.textContent = `What they assess: ${entry.whatInterviewerAssesses || "—"}`;
+          const framework = document.createElement("p");
+          framework.className = "mb-0";
+          framework.textContent = `Kerangka jawaban: ${entry.answerFramework || "Gunakan contoh nyata dari pengalamanmu."}`;
+          card.append(type, question, assesses, framework);
+          resultBox.append(card);
+        });
+        appendTextSection(resultBox, "Pertanyaan untuk perekrut", result.questionsToAskEmployer);
+        appendTextSection(resultBox, "Daftar persiapan", result.preparationChecklist);
+        const disclaimer = document.createElement("p");
+        disclaimer.className = "small text-secondary mb-0";
+        disclaimer.textContent = result.disclaimer || "Siapkan jawaban jujur berdasarkan pengalamanmu.";
+        resultBox.append(disclaimer);
+        resultBox.hidden = false;
+      } catch (error) {
+        showToast(error.message || "Interview preparation failed. Check your Gemini setup.");
+      } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="bi bi-chat-square-text me-2" aria-hidden="true"></i>Buat Latihan Wawancara';
+      }
+    });
+
+    const documentForm = document.getElementById("documentForm");
+    const documentType = document.getElementById("documentType");
+    const reasonField = document.getElementById("resignationReasonField");
+    const reasonInput = document.getElementById("resignationReason");
+    const lastWorkingDayField = document.getElementById("lastWorkingDayField");
+    const lastWorkingDayInput = document.getElementById("lastWorkingDay");
+    const coverDetailsField = document.getElementById("coverDetailsField");
+    const coverDetailsInput = document.getElementById("coverDetails");
+    const resumeTextInput = document.getElementById("resumeText");
+    const jobDescriptionInput = document.getElementById("jobDescription");
+    const documentTone = document.getElementById("documentTone");
+    const resignationScenario = document.getElementById("resignationScenario");
+    const lastWorkingDayHelp = document.getElementById("lastWorkingDayHelp");
+    const lastWorkingDayOptional = document.getElementById("lastWorkingDayOptional");
+    const jobMatchAnalysis = document.getElementById("jobMatchAnalysis");
+    const documentOutput = document.getElementById("documentOutput");
+    const generatedDocument = document.getElementById("generatedDocument");
+    let generatedLetter = "";
+    let latestJobMatchAnalysis = null;
+
+    function updateDocumentToneOptions() {
+      const options = documentType.value === "cover"
+        ? [["formal", "Formal"], ["confident", "Confident"], ["warm", "Warm"], ["concise", "Concise"]]
+        : [["professional", "Professional"], ["formal", "Formal"], ["friendly", "Friendly"]];
+      const currentValue = documentTone.value;
+      documentTone.replaceChildren(...options.map(([value, label]) => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = label;
+        return option;
+      }));
+      documentTone.value = options.some(([value]) => value === currentValue)
+        ? currentValue
+        : (documentType.value === "cover" ? "formal" : "professional");
+    }
+
+    function updateDocumentTypeFields() {
+      const needsReason = documentType.value === "resignation";
+      reasonField.hidden = !needsReason;
+      reasonInput.required = false;
+      reasonInput.setCustomValidity("");
+      lastWorkingDayField.hidden = !needsReason;
+      document.getElementById("resignationScenarioField").hidden = !needsReason;
+      lastWorkingDayInput.setCustomValidity("");
+      const needsImmediateDate = needsReason && resignationScenario.value === "immediate_request";
+      lastWorkingDayInput.required = needsImmediateDate;
+      lastWorkingDayOptional.hidden = needsImmediateDate;
+      lastWorkingDayHelp.textContent = needsImmediateDate
+        ? "Required date for this request only; no notice period or legal rule is assumed."
+        : "Opsional. Sistem tidak mengasumsikan masa pemberitahuan atau aturan hukum tertentu.";
+      const needsCoverDetails = documentType.value === "cover";
+      coverDetailsField.hidden = !needsCoverDetails;
+      document.getElementById("jobDescriptionField").hidden = !needsCoverDetails;
+      document.getElementById("resumeTextField").hidden = !needsCoverDetails;
+      coverDetailsInput.required = false;
+      updateDocumentToneOptions();
+      coverDetailsInput.setCustomValidity("");
+    }
+
+    function collectDocumentFields() {
+      return {
+        type: documentType.value,
+        language: document.getElementById("documentLanguage").value,
+        fullName: document.getElementById("fullName").value.trim(),
+        jobTitle: document.getElementById("jobTitle").value.trim(),
+        companyName: document.getElementById("companyName").value.trim(),
+        recipientName: document.getElementById("recipientName").value.trim(),
+        email: document.getElementById("contactEmail").value.trim(),
+        phone: document.getElementById("contactPhone").value.trim(),
+        date: document.getElementById("documentDate").value,
+        reason: reasonInput.value.trim(),
+        lastWorkingDay: lastWorkingDayInput.value,
+        coverDetails: coverDetailsInput.value.trim(),
+        resumeText: resumeTextInput.value.trim(),
+        jobDescription: jobDescriptionInput.value.trim(),
+        tone: documentTone.value,
+        scenario: resignationScenario.value
+      };
+    }
+
+    function renderJobMatchAnalysis(analysis, language) {
+      jobMatchAnalysis.replaceChildren();
+      if (!analysis?.hasJobDescription) {
+        jobMatchAnalysis.hidden = true;
+        return;
+      }
+      const isIndonesian = language === "id";
+      const heading = document.createElement("h4");
+      heading.className = "h6 mb-2";
+      heading.textContent = isIndonesian ? "Pemeriksaan kata kunci lowongan" : "Deskripsi pekerjaan keyword check";
+      const note = document.createElement("p");
+      note.className = "mb-2 text-secondary";
+      note.textContent = isIndonesian
+        ? "Pencocokan literal terbatas pada daftar keterampilan yang dikenal; ini bukan penilaian kualifikasi."
+        : "Literal matching covers a limited list of recognized skills; it is not an assessment of your qualifications.";
+      jobMatchAnalysis.append(heading, note);
+      const groups = [
+        [isIndonesian ? "Disebut di lowongan" : "Recognized in job description", analysis.jobSkills],
+        [isIndonesian ? "Ada di informasi Anda" : "Found in your information", analysis.matchedSkills],
+        [isIndonesian ? "Belum ditemukan—periksa CV Anda" : "Not found—check your resume", analysis.skillsToAddress]
+      ];
+      groups.forEach(([label, values]) => {
+        const paragraph = document.createElement("p");
+        paragraph.className = "mb-1";
+        const strong = document.createElement("strong");
+        strong.textContent = `${label}: `;
+        paragraph.append(strong, document.createTextNode(
+          Array.isArray(values) && values.length ? values.join(", ") : (isIndonesian ? "tidak ada" : "none")
+        ));
+        jobMatchAnalysis.append(paragraph);
+      });
+      jobMatchAnalysis.hidden = false;
+    }
+
+    documentType.addEventListener("change", () => {
+      updateDocumentTypeFields();
+      generatedLetter = "";
+      latestJobMatchAnalysis = null;
+      documentOutput.hidden = true;
+      jobMatchAnalysis.hidden = true;
+    });
+    resignationScenario.addEventListener("change", updateDocumentTypeFields);
+    document.getElementById("documentLanguage").addEventListener("change", () => {
+      generatedLetter = "";
+      documentOutput.hidden = true;
+      jobMatchAnalysis.hidden = true;
+    });
+    updateDocumentTypeFields();
+
+    documentForm.addEventListener("input", (event) => {
+      if (event.target.required) {
+        event.target.setCustomValidity(event.target.value.trim() ? "" : "Lengkapi kolom ini.");
+      }
+      generatedLetter = "";
+      documentOutput.hidden = true;
+    });
+
+    documentForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      documentForm.querySelectorAll("[required]").forEach((field) => {
+        field.setCustomValidity(field.value.trim() ? "" : "Lengkapi kolom ini.");
+      });
+      if (!documentForm.reportValidity()) return;
+
+      const submitButton = document.getElementById("generateDocumentButton");
+      submitButton.disabled = true;
+      try {
+        const result = await apiRequest("/api/documents/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(collectDocumentFields())
+        });
+        generatedLetter = result.content;
+        const generationBadge = document.getElementById("documentGenerationBadge");
+        generationBadge.textContent = "✦ Dibuat dengan Gemini AI";
+        generationBadge.classList.remove("is-local");
+        document.getElementById("docGenerationMode").textContent = "Draf ini dibuat dengan Gemini AI. Periksa nama, tanggal, dan setiap klaim sebelum digunakan.";
+        latestJobMatchAnalysis = result.data?.analysis || null;
+        generatedDocument.value = result.content;
+        renderJobMatchAnalysis(latestJobMatchAnalysis, result.data?.language || "en");
+        documentOutput.hidden = false;
+      } catch (error) {
+        generatedLetter = "";
+        console.error("Could not generate the formal letter.", error);
+      } finally {
+        submitButton.disabled = !apiReady;
+      }
+    });
+
+    generatedDocument.addEventListener("input", () => {
+      generatedLetter = generatedDocument.value;
+    });
+
+    document.getElementById("saveDocumentButton").addEventListener("click", async () => {
+      generatedLetter = generatedDocument.value;
+      if (!generatedLetter) {
+        showToast("Buat surat terlebih dahulu sebelum menyimpannya.");
+        return;
+      }
+      const fields = collectDocumentFields();
+      const typeLabel = fields.language === "id"
+        ? (fields.type === "resignation" ? "Surat pengunduran diri" : "Surat lamaran")
+        : (fields.type === "resignation" ? "Resignation letter" : "Cover letter");
+      await saveLibraryEntry({
+        kind: "document",
+        title: `${typeLabel}: ${fields.companyName}`,
+        content: generatedLetter,
+        data: { ...fields, analysis: latestJobMatchAnalysis }
+      });
+    });
+
+    function openSavedLibraryItem(item) {
+      const data = item.data && typeof item.data === "object" ? item.data : {};
+      if (item.kind === "document") {
+        documentType.value = data.type === "cover" ? "cover" : "resignation";
+        documentType.dispatchEvent(new Event("change", { bubbles: true }));
+        [
+          ["fullName", data.fullName],
+          ["jobTitle", data.jobTitle],
+          ["companyName", data.companyName],
+          ["recipientName", data.recipientName],
+          ["contactEmail", data.email],
+          ["contactPhone", data.phone],
+          ["documentDate", data.date],
+          ["resignationReason", data.reason],
+          ["lastWorkingDay", data.lastWorkingDay],
+          ["coverDetails", data.coverDetails],
+          ["resumeText", data.resumeText],
+          ["jobDescription", data.jobDescription]
+        ].forEach(([id, value]) => {
+          const field = document.getElementById(id);
+          field.value = typeof value === "string" ? value : "";
+          field.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+        resignationScenario.value = ["standard", "personal", "career_change", "immediate_request"].includes(data.scenario)
+          ? data.scenario
+          : "standard";
+        resignationScenario.dispatchEvent(new Event("change", { bubbles: true }));
+        documentTone.value = data.tone || (data.type === "cover" ? "formal" : "professional");
+        latestJobMatchAnalysis = data.analysis || null;
+        const documentLanguage = document.getElementById("documentLanguage");
+        documentLanguage.value = data.language === "id" ? "id" : "en";
+        generatedLetter = item.content;
+        generatedDocument.value = item.content;
+        renderJobMatchAnalysis(data.analysis, documentLanguage.value);
+        documentOutput.hidden = false;
+        showFeature("document");
+      } else {
+        [
+          ["socialCategory", data.category],
+          ["socialPlatform", data.platform],
+          ["socialObjective", data.objective || "promotion"],
+          ["socialTone", data.tone],
+          ["hashtagCount", data.hashtagCount],
+          ["socialLanguage", data.language]
+        ].forEach(([id, value]) => {
+          const field = document.getElementById(id);
+          if ([...field.options].some((option) => option.value === String(value))) {
+            field.value = String(value);
+          }
+        });
+        [
+          ["postDetails", data.topic],
+          ["targetAudience", data.audience],
+          ["socialKeyBenefit", data.keyBenefit],
+          ["socialCallToAction", data.callToAction]
+        ].forEach(([id, value]) => {
+          document.getElementById(id).value = typeof value === "string" ? value : "";
+        });
+        generatedSocialCaption = item.content;
+        socialCaptionOutput.value = item.content;
+        captionAlternative2.value = "";
+        captionAlternative3.value = "";
+        ctaSuggestions.replaceChildren();
+        socialOutput.hidden = false;
+        updateCaptionCounter();
+        showFeature("social");
+      }
+      document.getElementById("workspace").scrollIntoView({ behavior: "smooth", block: "start" });
+      showToast("Item tersimpan dibuka untuk disunting.");
+    }
+
+    libraryItemsContainer.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-library-action]");
+      if (!button) return;
+      const item = savedLibraryItems.find((savedItem) => savedItem.id === button.dataset.libraryId);
+      if (!item) {
+        showToast("Item ini sudah tidak tersedia.");
+        return;
+      }
+      if (button.dataset.libraryAction === "delete") {
+        try {
+          await apiRequest(`/api/library/${encodeURIComponent(item.id)}`, { method: "DELETE" });
+          savedLibraryItems = savedLibraryItems.filter((savedItem) => savedItem.id !== item.id);
+          renderSavedLibrary();
+          showToast("Item tersimpan deleted.");
+        } catch (error) {
+          console.error("Could not delete the item tersimpan.", error);
+        }
+        return;
+      }
+      if (button.dataset.libraryAction === "open") {
+        openSavedLibraryItem(item);
+        return;
+      }
+      if (button.dataset.libraryAction === "copy") {
+        try {
+          await copyTextToClipboard(item.content);
+        } catch (error) {
+          console.error("Tidak dapat menyalin item.", error);
+          showToast("Tidak dapat menyalin item ini. Periksa izin papan klip lalu coba lagi.");
+          return;
+        }
+        showToast("Item berhasil disalin ke papan klip.");
+      }
+    });
+
+    document.getElementById("copyDocumentButton").addEventListener("click", async () => {
+      generatedLetter = generatedDocument.value;
+      if (!generatedLetter) return;
+      try {
+        await copyTextToClipboard(generatedLetter);
+      } catch (error) {
+        console.error("Could not copy the formal letter.", error);
+        toastMessage.textContent = "Fitur salin tidak tersedia di browser ini. Pilih teks surat untuk menyalinnya.";
+        toast.show();
+        return;
+      }
+      toastMessage.textContent = "Surat berhasil disalin.";
+      toast.show();
+    });
+
+    async function actionDownloadDocument(fileFormat) {
+      if (!generatedLetter) {
+        toastMessage.textContent = "Buat surat terlebih dahulu sebelum mengunduhnya.";
+        toast.show();
+        return false;
+      }
+      if (!apiReady) {
+        showToast("Hubungkan ke server Python lokal sebelum melanjutkan.");
+        return false;
+      }
+
+      const downloadButton = document.getElementById(
+        fileFormat === "pdf" ? "downloadDocumentButton" : "downloadDocxButton"
+      );
+      downloadButton.disabled = true;
+      try {
+        const response = await apiRequest(
+          `/api/documents/${fileFormat}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...collectDocumentFields(), content: generatedDocument.value })
+          },
+          true
+        );
+        const expectedMime = fileFormat === "pdf"
+          ? "application/pdf"
+          : "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        if (!response.headers.get("Content-Type")?.toLowerCase().includes(expectedMime)) {
+          throw new Error(`The document server returned a file that is not ${fileFormat.toUpperCase()}.`);
+        }
+        const documentBlob = await response.blob();
+        const headerBytes = new Uint8Array(await documentBlob.slice(0, 4).arrayBuffer());
+        const validHeader = fileFormat === "pdf"
+          ? new TextDecoder("ascii").decode(headerBytes.slice(0, 4)) === "%PDF"
+          : headerBytes[0] === 0x50 && headerBytes[1] === 0x4b;
+        if (documentBlob.size < 100 || !validHeader) {
+          throw new Error(`The ${fileFormat.toUpperCase()} could not be verified and was not downloaded.`);
+        }
+        const disposition = response.headers.get("Content-Disposition") || "";
+        const filenameMatch = disposition.match(/filename="?([^";]+)"?/i);
+        const filename = filenameMatch?.[1] || `Boringstuff_document.${fileFormat}`;
+        const downloadUrl = URL.createObjectURL(documentBlob);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = filename;
+        downloadLink.hidden = true;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 10000);
+        toastMessage.textContent = `Surat kamu was downloaded as ${filename}.`;
+        toast.show();
+        return true;
+      } catch (error) {
+        console.error(`Could not create the formal letter ${fileFormat.toUpperCase()}.`, error);
+        if (!(error instanceof Error && error.status)) {
+          showToast(error instanceof Error ? error.message : `The ${fileFormat.toUpperCase()} could not be created. Please try again.`);
+        }
+        return false;
+      } finally {
+        downloadButton.disabled = !apiReady;
+      }
+    }
+
+    document.getElementById("downloadDocumentButton").addEventListener("click", () => actionDownloadDocument("pdf"));
+    document.getElementById("downloadDocxButton").addEventListener("click", () => actionDownloadDocument("docx"));
+
+    const pdfForm = document.getElementById("pdfForm");
+    const pdfProgress = document.getElementById("pdfProgress");
+    const pdfProgressTrack = document.getElementById("pdfProgressTrack");
+    const pdfProgressBar = document.getElementById("pdfProgressBar");
+    const pdfProgressText = document.getElementById("pdfProgressText");
+    const pdfCompressionMode = document.getElementById("pdfCompressionMode");
+    const pdfUploadZone = document.getElementById("pdfUploadZone");
+    const pdfLossyWarning = document.getElementById("pdfLossyWarning");
+    const pdfLossyConsent = document.getElementById("pdfLossyConsent");
+    const documentDateInput = document.getElementById("documentDate");
+    const today = new Date();
+const localDate = new Date(
+  today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().slice(0, 10);
+
+documentDateInput.value = localDate;
+    lastWorkingDayInput.min = documentDateInput.value;
+    documentDateInput.addEventListener("input", () => {
+      lastWorkingDayInput.min = documentDateInput.value;
+    });
+    function updatePdfCompressionMode() {
+      const needsConsent = pdfCompressionMode.value !== "lossless";
+      pdfLossyWarning.hidden = !needsConsent;
+      pdfLossyConsent.required = needsConsent;
+      if (!needsConsent) pdfLossyConsent.checked = false;
+    }
+
+    pdfCompressionMode.addEventListener("change", updatePdfCompressionMode);
+    updatePdfCompressionMode();
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+    }
+
+    function setSelectedPdfFile(file) {
+      if (!file) {
+        selectedPdfFile = null;
+        document.getElementById("fileName").textContent = "Pilih PDF untuk memulai";
+        document.getElementById("fileInfo").textContent = "Letakkan file di sini atau pilih file";
+        return false;
+      }
+      if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+        showToast("Pilih file PDF.");
+        selectedPdfFile = null;
+        pdfInput.value = "";
+        document.getElementById("fileName").textContent = "Pilih PDF untuk memulai";
+        document.getElementById("fileInfo").textContent = "Letakkan file di sini atau pilih file";
+        return false;
+      }
+      if (file.size === 0) {
+        showToast("File PDF yang dipilih kosong.");
+        selectedPdfFile = null;
+        pdfInput.value = "";
+        document.getElementById("fileName").textContent = "Pilih PDF untuk memulai";
+        document.getElementById("fileInfo").textContent = "Letakkan file di sini atau pilih file";
+        return false;
+      }
+      if (file.size > 25 * 1024 * 1024) {
+        showToast("Ukuran file melebihi batas 25 MB.");
+        selectedPdfFile = null;
+        pdfInput.value = "";
+        document.getElementById("fileName").textContent = "Pilih PDF untuk memulai";
+        document.getElementById("fileInfo").textContent = "Letakkan file di sini atau pilih file";
+        return false;
+      }
+      selectedPdfFile = file;
+      document.getElementById("fileName").textContent = file.name;
+      document.getElementById("fileInfo").textContent = `PDF · ${formatFileSize(file.size)}`;
+      return true;
+    }
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      pdfUploadZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        pdfUploadZone.classList.add("is-dragover");
+      });
+    });
+    ["dragleave", "drop"].forEach((eventName) => {
+      pdfUploadZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        pdfUploadZone.classList.remove("is-dragover");
+      });
+    });
+    pdfUploadZone.addEventListener("drop", (event) => {
+      const files = event.dataTransfer?.files;
+      if (!files || files.length !== 1) {
+        showToast("Masukkan satu file PDF setiap kali.");
+        return;
+      }
+      setSelectedPdfFile(files[0]);
+    });
+
+    pdfForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const file = selectedPdfFile || pdfInput.files[0];
+      if (!file) {
+        toastMessage.textContent = "Pilih file PDF sebelum melanjutkan.";
+        toast.show();
+        return;
+      }
+      if (pdfProcessing) return;
+      if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+        setSelectedPdfFile(null);
+        showToast("Pilih file PDF.");
+        return;
+      }
+      if (file.size > 25 * 1024 * 1024) {
+        setSelectedPdfFile(null);
+        showToast("Ukuran file melebihi batas 25 MB.");
+        return;
+      }
+
+      const mode = pdfCompressionMode.value;
+      if (mode !== "lossless" && !pdfLossyConsent.checked) {
+        showToast("Setujui konsekuensi kompresi gambar sebelum melanjutkan.");
+        pdfLossyConsent.focus();
+        return;
+      }
+      if (!apiReady) {
+        showToast("Hubungkan ke server Python lokal sebelum melanjutkan.");
+        return;
+      }
+      pdfProcessing = true;
+      updateAvailabilityUI();
+      document.getElementById("optimizePdfButton").disabled = true;
+      pdfProgress.hidden = false;
+      pdfProgressTrack.hidden = false;
+      pdfProgressBar.classList.add("progress-bar-striped", "progress-bar-animated");
+      pdfProgressBar.style.width = "35%";
+      pdfProgressText.textContent = mode === "lossless"
+        ? "Memproses secara lokal dan memeriksa teks yang dapat dipilih..."
+        : "Merender halaman secara lokal; kualitas gambar dan fitur interaktif akan berkurang...";
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("mode", mode);
+        const response = await apiRequest(
+          "/api/pdf/compress",
+          { method: "POST", body: formData },
+          true
+        );
+        const optimizedBlob = await response.blob();
+        const pdfHeader = new TextDecoder("ascii").decode(await optimizedBlob.slice(0, 5).arrayBuffer());
+        const originalSize = Number(response.headers.get("X-Original-Size"));
+        const optimizedSize = Number(response.headers.get("X-Optimized-Size"));
+        const pageCount = Number(response.headers.get("X-Page-Count"));
+        const textStatus = response.headers.get("X-Text-Status");
+        const validTextStatus = mode === "lossless"
+          ? ["preserved", "none"].includes(textStatus)
+          : textStatus === "rasterized";
+        if (pdfHeader !== "%PDF-" || optimizedBlob.size !== optimizedSize ||
+            !Number.isFinite(originalSize) || !Number.isFinite(optimizedSize) ||
+            !Number.isInteger(pageCount) || pageCount < 1 ||
+            optimizedSize >= originalSize || !validTextStatus) {
+          throw new Error("Server Python mengembalikan detail kompresi yang tidak valid.");
+        }
+
+        const disposition = response.headers.get("Content-Disposition") || "";
+        const filenameMatch = disposition.match(/filename="?([^";]+)"?/i);
+        const filename = filenameMatch ? filenameMatch[1] : "document_optimized.pdf";
+        const downloadUrl = URL.createObjectURL(optimizedBlob);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = filename;
+        downloadLink.hidden = true;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 10000);
+
+        const reduction = ((1 - optimizedSize / originalSize) * 100).toFixed(1);
+        const modeName = mode === "lossless" ? "Aman untuk teks" : mode === "strong" ? "Maksimal" : "Seimbang";
+        const contentNote = textStatus === "preserved"
+          ? "Teks yang dapat dipilih telah diperiksa dan dipertahankan."
+          : textStatus === "none"
+            ? "Tidak ditemukan teks yang dapat diekstrak; struktur halaman asli dipertahankan."
+            : "Halaman diubah menjadi gambar; teks dan struktur aksesibilitas tidak dipertahankan.";
+        pdfProgressText.textContent =
+          `${modeName}: ${formatFileSize(originalSize)} → ${formatFileSize(optimizedSize)} ` +
+          `(${reduction}% lebih kecil, ${pageCount} halaman). ${contentNote}`;
+        toastMessage.textContent = `PDF ${pageCount} halaman berhasil diverifikasi. Ukuran berkurang ${reduction}%.`;
+        toast.show();
+      } catch (error) {
+        console.error("Tidak dapat mengoptimalkan PDF.", error);
+        pdfProgressText.textContent = error instanceof Error
+          ? error.message
+          : "PDF tidak dapat dioptimalkan.";
+      } finally {
+        pdfProcessing = false;
+        pdfProgressTrack.hidden = true;
+        pdfProgressBar.classList.remove("progress-bar-striped", "progress-bar-animated");
+        updateAvailabilityUI();
+      }
+    });
+
+    pdfInput.addEventListener("change", () => setSelectedPdfFile(pdfInput.files[0]));
+
+    renderSavedLibrary();
+
+    async function initializeBackend() {
+      try {
+        const state = await apiRequest("/api/session");
+        savedLibraryItems = state.library;
+        apiReady = true;
+        updateAvailabilityUI();
+        renderSavedLibrary();
+      } catch (error) {
+        apiReady = false;
+        updateAvailabilityUI();
+        console.error("Tidak dapat memulai aplikasi.", error);
+      }
+    }
+
+    initializeBackend();
+
+  </script>
+  <script src="/static/local-tools.js" defer></script>
+  <script src="/static/file-tools.js" defer></script>
+</body>
+</html>
